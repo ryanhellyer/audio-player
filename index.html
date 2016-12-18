@@ -10,246 +10,209 @@
 
 <header>
 
-	<div id="hamburger">&#9776;</div>
+	<!-- Hamburger menu -->
+	<div id="hamburger" class="hamburger"></div>
+	<div id="hamburger-menu">
+		<div class="hamburger"></div>
 
-	<div class="wrapper">
+		<div class="logo">
+			Vegetable <span>Audio</span>
+		</div>
 
-		<a id="title" href="#" title="Audio Player" rel="home">
-			<h1>
-				Vegetable <span>Audio</span>
-			</h1>
-		</a>
-
-		<nav>
-			<form>
-
-				<button value="Turnip" name="genre" />Turnip</button>
-				<button value="Beetroot" name="genre" />Beetroot</button>
-				<button class="active" value="Corn" name="genre" />Corn</button>
-				<button value="Celery" name="genre" />Celery</button>
-				<button value="Chickweed" name="genre" />Chickweed</button>
-
-				<div class="select-box">
-					<label>Duration</label>
-					<select>
-						<option>All durations</option>
-						<option>&lt; 0:30</option>
-						<option>0:30 - 1:00</option>
-						<option>1:00 - 1:30</option>
-						<option>1:30 - 2:00</option>
-						<option>2:00 - 2:30</option>
-						<option>2:30 - 3:00</option>
-						<option>3:00 - 3:30</option>
-						<option>3:30 - 4:00</option>
-						<option>4:00 - 4:30</option>
-						<option>4:30 - 5:00</option>
-						<option>&gt; 5:00</option>
-					</select>
-				</div>
-
-				<div class="select-box">
-					<label>Orderby</label>
-					<select>
-						<option>Highest rated</option>
-						<option>Most popular</option>
-					</select>
-				</div>
-
-			</form>
-		</nav>
+		<ul>
+			<li class="active" id="home">
+				<a href="#">Home</a>
+			</li>
+			<li id="upload">
+				<a href="#">Upload audio</a>
+			</li>
+			<li id="record">
+				<a href="#">Record audio</a>
+			</li>
+			<li id="login">
+				<a href="#">Log in</a>
+			</li>
+			<li id="register">
+				<a href="#">Register</a>
+			</li>
+			<li id="about">
+				<a href="#">About</a>
+			</li>
+			<li id="contact">
+				<a href="#">Contact</a>
+			</li>
+			<li id="legal-notice">
+				<a href="#">Legal notice</a>
+			</li>
+		</ul>
 
 	</div>
+
+	<a href="#" title="Audio Player" rel="home">
+		<h1 class="logo">
+			Vegetable <span>Audio</span>
+		</h1>
+	</a>
+
+	<nav>
+		<form>
+
+			<button value="Turnip" name="genre" />Turnip</button>
+			<button value="Beetroot" name="genre" />Beetroot</button>
+			<button class="active" value="Corn" name="genre" />Corn</button>
+			<button value="Celery" name="genre" />Celery</button>
+			<button value="Chickweed" name="genre" />Chickweed</button>
+
+			<div class="select-box">
+				<label>Duration</label>
+				<select>
+					<option>All durations</option>
+					<option>&lt; 0:30</option>
+					<option>0:30 - 1:00</option>
+					<option>1:00 - 1:30</option>
+					<option>1:30 - 2:00</option>
+					<option>2:00 - 2:30</option>
+					<option>2:30 - 3:00</option>
+					<option>3:00 - 3:30</option>
+					<option>3:30 - 4:00</option>
+					<option>4:00 - 4:30</option>
+					<option>4:30 - 5:00</option>
+					<option>&gt; 5:00</option>
+				</select>
+			</div>
+
+			<div class="select-box">
+				<label>Orderby</label>
+				<select>
+					<option>Highest rated</option>
+					<option>Most popular</option>
+				</select>
+			</div>
+
+		</form>
+	</nav>
 
 </header>
 
 <div class="wrapper">
 
 
-	<!-- Audio visualiser -->
-    <canvas id='canvas' width="800" height="350"></canvas>
+	<!-- Individual audio file page content -->
+	<article>
+
+		<h1>Veggies es bonus vobis</h1>
+
+		<!-- Audio visualiser -->
+		<canvas id='canvas' width="800" height="350"></canvas>
+
+		<p>
+			Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
+		</p>
+		<p>
+			Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress. Corn amaranth salsify bunya nuts nori azuki bean chickweed potato bell pepper artichoke.
+		</p>
+
+		Tags:
+		<ul id="tags">
+			<li><a href="#">Corn</a></li>
+			<li><a href="#">Silverbeet</a></li>
+			<li><a href="#">Onion</a></li>
+		</ul>
+
+		Duration: 0:15
+
+	</article>
 
     <!-- Document list -->
 	<ul id="documents">
 		<li>
 			<a href="#">
-				<strong>Abmeldung/ deregistration</strong>
-
-				How to abmeldung/ deregister with the Meldebehörde (the opposite of Anmeldung)
+				<strong>Veggies es bonus vobis</strong>
+				Gumbo beet greens corn soko endive gumbo gourd parsley shallot courgette. Proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Accommodation</strong>
-
-				Find somewhere to live. WG (shared apartments), own apartments, temporary accommdation.
+				<strong>Gumbo beet greens corn</strong>
+				Soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>AirBNB / Holiday Rentals</strong>
-
-				Explanation of who, why, where, what and how you can rent a place out on Holiday Rentals.
+				<strong>Turnip greens yarrow ricebean</strong>
+				Rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Banking</strong>
-
-				Tips on which German banks to sign up for, what to watch out for, bank fees.
+				<strong>Veggies es bonus vobis</strong>
+				Gumbo beet greens corn soko endive gumbo gourd parsley shallot courgette. Proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Best places to get food</strong>
-
-				Where to find the best food in Berlin. Restaurants, takeaways etc.
+				<strong>Gumbo beet greens corn</strong>
+				Soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Bürgeramt Anmeldung</strong>
-
-				How to register your address in Berlin.
+				<strong>Turnip greens yarrow ricebean</strong>
+				Rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Cleaning Services</strong>
-
-				Putzfrau. Where to find someone to clean your flat.
+				<strong>Veggies es bonus vobis</strong>
+				Gumbo beet greens corn soko endive gumbo gourd parsley shallot courgette. Proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Co-working</strong>
-
-				The best cafes with WiFi and co-working offices.
+				<strong>Gumbo beet greens corn</strong>
+				Soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Common questions</strong>
-
-				Answers to many questions, including where to find the best food, tailors, print shops etc.
+				<strong>Turnip greens yarrow ricebean</strong>
+				Rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Computer and phone repairs</strong>
-
-				Dropped your phone in the toilet? Computer not working?
+				<strong>Veggies es bonus vobis</strong>
+				Gumbo beet greens corn soko endive gumbo gourd parsley shallot courgette. Proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Currency Exchange</strong>
-
-				Information on how to get currencies exchanged.
+				<strong>Gumbo beet greens corn</strong>
+				Soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Doctors, dentists, hospitals</strong>
-
-				Emergency numbers, lawyers, English speaking doctors, dentists etc.
+				<strong>Turnip greens yarrow ricebean</strong>
+				Rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Downloading</strong>
-
-				The implications of downloading copyrighted content in Germany.
+				<strong>Veggies es bonus vobis</strong>
+				Gumbo beet greens corn soko endive gumbo gourd parsley shallot courgette. Proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Handy people, repairs, furniture moving</strong>
-
-				Find somewhere to get stuff repaired, finding handy people to assist with stuff around the home, furniture moving
+				<strong>Gumbo beet greens corn</strong>
+				Soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<strong>Health Insurance</strong>
-
-				Information about health insurance in Germany
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>Immigration</strong>
-
-				informationa bout Immigration lawyers and resources for refugees.
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>Jobs</strong>
-
-				Where to look for jobs. Informal jobs, professional job sites, job Facebook groups.
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>Learn German</strong>
-
-				Resources for learning German and recommendations for schools to join.
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>Leaving Germany for good?</strong>
-
-				Check list for what to do when leaving Germany permanently.
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>Locksmiths</strong>
-
-				Where to find the best locksmiths (Schlüsseldienst) and key cutting services.
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>Phone and internet</strong>
-
-				Information about the various phone and internet services available.
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>Police</strong>
-
-				How to contact the police, including for emergencies and non-emergencies.
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>Rote Karte</strong>
-
-				"Red Card" certification for safety and sanitization. Required for working in kitchens.
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>Rundfunkbeitrag</strong>
-
-				Information about the compulsory TV/radio license fee.
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>Tax advisors</strong>
-
-				Recommendations for Steuerberater.
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<strong>VPN</strong>
-
-				How to protect your internet privacy via a VPN.
+				<strong>Turnip greens yarrow ricebean</strong>
+				Rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress.
 			</a>
 		</li>
 	</ul>

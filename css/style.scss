@@ -4,7 +4,9 @@
 
 $red: #dd0000;
 $red_hover: #dd3333;
-
+$hamburger_menu_width: 23rem;
+$subtle_grey: #f5f5f5;
+$light_grey: #efefef;
 
 /* =Fonts
 -------------------------------------------------------------- */
@@ -96,12 +98,12 @@ address {
 -------------------------------------------------------------- */
 a:visited,
 a {
-	color: #0066cc;
+	color: $red;
 	text-decoration: none;
 }
 
 a:hover {
-	color: #0066cc;
+	color: $red;
 	text-decoration: underline;
 }
 
@@ -129,26 +131,152 @@ header {
 	box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
-#hamburger {
-	position: absolute;
-	left: 2%;
-	top: 1.3rem;
+.hamburger {
+
+	float: left;
+	margin: 0.6rem 0 0 1rem;
 	font-size: 1.6rem;
 	color: #333;
+
+	&:before {
+		display: block;
+		border-radius: 2rem;
+		width: 1.5rem;
+		height: 1.5rem;
+		padding: 0.7rem 1rem 1.3rem 1rem;
+		content: '\2630';
+		cursor: pointer;
+	}
+
+	&:hover:before {
+		background: $red;
+		color: #fff;
+		cursor: pointer;
+	}
+
 }
 
-header h1 {
+#hamburger-menu {
+
+	background: #fff;
+	position: fixed;
+	top: 0;
+	width: $hamburger_menu_width;
+	transition: 0.25s;
+	left: -$hamburger_menu_width;
+	box-shadow: 0px 0 5px rgba(0,0,0,0.3);
+	padding-bottom: 999em;
+
+	&.open {
+		transition: 0.25s;
+		left: 0;
+	}
+
+	ul {
+
+		list-style: none;
+		margin: 2rem 0;
+		padding: 0;
+		float: left;
+		width: 100%;
+
+		li {
+
+			float: left;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			font-size: 1rem;
+			font-family: "Open Sans Bold", sans-serif;
+
+			&:hover {
+				background: $light_grey;
+			}
+
+			&.active {
+
+				background: $subtle_grey;
+
+				a {
+					color: $red;
+				}
+
+			}
+
+		}
+
+		a {
+			display: block;
+			width: 80%;
+			padding: 1rem 10%;
+			color: #333;
+			text-indent: 1.5rem;
+
+			&:before {
+				display: inline-block;
+				position: relative;
+				left: -1.5rem;
+				font-family: Icons;
+				font-size: 1.5rem;
+			}
+
+			&:hover {
+				text-decoration: none;
+			}
+
+		}
+
+	}
+
+}
+
+#home a:before {
+	content: "\e908";
+}
+
+#record a:before {
+	content: "\e90a";
+}
+
+#upload a:before {
+	content: "\e90d";
+}
+
+#login a:before {
+	content: "\e90c";
+}
+
+#register a:before {
+	content: "\e90c";
+}
+
+#about a:before {
+	 content: "\e910";
+}
+
+#contact a:before {
+	content: "\e90e";
+}
+
+#legal-notice a:before {
+	content: "\e90b";
+}
+
+.logo {
 	float: left;
 	font-family: 'Open Sans Extra Bold', sans-serif;
 	font-weight: 100;
-	margin: 1rem 0 0 0;
+	margin: 1rem 0 0 0.2rem;
 	font-size: 2rem;
-	color: #333
+	color: #333;
+
+	span {
+		color: $red !important;
+	}
+
 }
 
-header h1 span {
-	color: $red;
-}
 
 header nav {
 	float: right;
@@ -244,7 +372,7 @@ header button:hover {
 }
 
 #documents li a:hover {
-	color: #0066cc;
+	color: $red;
 	text-decoration: none
 }
 
@@ -386,12 +514,8 @@ header button:hover {
 	float: left;
 	width: 70%;
 
-	:hover {
-		background: purple;
-	}
-
-	:hover h2,
-	:hover p{
+	&:hover h2,
+	&:hover p {
 		color: $red;
 	}
 
@@ -446,21 +570,13 @@ header button:hover {
 
 
 
+
+
 #volume-value-wrapper {
 	float: left;
 	width: 10%;
 	line-height:1;
 }
-
-
-
-
-
-
-
-
-
-
 
 #time-stamp {
 	float: left;
@@ -513,7 +629,40 @@ footer:hover #time-stamp span {
 -------------------------------------------------------------- */
 
 article {
-	margin-bottom: 4rem;
+	max-width: 980px;
+	margin: 8rem auto 0 auto;
+}
+
+#canvas {
+	width: 100%;
+	height: 20rem;
+}
+
+#tags {
+
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	font-size: 1rem;
+
+	list-style: none;
+
+	li {
+
+		display: inline-block;
+		list-style: none;
+		font-size: 1rem;
+
+		&:after {
+			content: ", ";
+		}
+
+		&:last-child:after {
+			content: ".";
+		}
+
+	}
+
 }
 
 h1,
@@ -522,7 +671,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Open Sans Light', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	color: #000;
 	font-weight: normal;
 }
@@ -537,7 +686,7 @@ h6 a {
 }
 
 h1 {
-	font-size: 4rem;
+	font-size: 3rem;
 	margin: 1rem 0 0.3rem;
 }
 
@@ -844,7 +993,7 @@ footer {
 	width: 100%;
 	height: 6.5rem;
 	background: #fff;
-	box-shadow: 0 0px 5px rgba(0,0,0,0.4);
+	box-shadow: 0 0 5px rgba(0,0,0,0.4);
 	text-align: center;
 }
 

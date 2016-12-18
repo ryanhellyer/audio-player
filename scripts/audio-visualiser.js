@@ -36,14 +36,14 @@ window.onload = function() {
 		meterWidth = 10, //width of the meters in the spectrum
 		gap = 2, //gap between meters
 		capHeight = 2,
-		capStyle = '#fff',
+		capStyle = '#aa0000',
 		meterNum = 800 / (10 + 2), //count of the meters
 		capYPositionArray = []; ////store the vertical position of hte caps for the preivous frame
 	ctx = canvas.getContext('2d'),
 	gradient = ctx.createLinearGradient(0, 0, 0, 300);
 	gradient.addColorStop(1, '#ff0000');
-	gradient.addColorStop(0.8, '#00ff00');
-	gradient.addColorStop(0.5, '#0000ff');
+	gradient.addColorStop(0.8, '#aa0000');
+	gradient.addColorStop(0.5, '#000000');
 	// loop
 	function renderFrame() {
 		var array = new Uint8Array(analyser.frequencyBinCount);

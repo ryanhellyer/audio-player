@@ -61,6 +61,15 @@
 					e.target.className = "paused icon-button";
 				}
 
+			} else if ( "hamburger" == e.target.className ) {
+				// Hamburger buttons (there's more than one of them)
+
+				if ( "" == hamburgerMenu.className ) {
+					hamburgerMenu.className = "open";
+				} else {
+					hamburgerMenu.className = "";
+				}
+
 			}
 
 		}

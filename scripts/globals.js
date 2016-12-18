@@ -10,3 +10,4 @@ var timeControl     = document.getElementById( "time-stamp" );
 var mute            = document.getElementById( "mute" );
 var volumeControl   = document.getElementById("volume-control");
 var timeElapsedLine = document.getElementById( "time-elapsed-line" );
+var hamburgerMenu   = document.getElementById( "hamburger-menu" );
