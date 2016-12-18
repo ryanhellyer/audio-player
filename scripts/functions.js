@@ -11,7 +11,7 @@ function changeVolume( volume ) {
 	document.getElementById("volume-value").innerHTML = volume;
 
 	// If muted, then set player volume to zero, otherwise set to chosen value
-    if ( true != localStorage.getItem( 'mute' ) ) {
+    if ( "true" == localStorage.getItem( 'mute' ) ) {
 		audioPlayer.volume = 0;
 	} else {
 		audioPlayer.volume = ( volume / 100 );

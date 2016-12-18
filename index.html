@@ -285,92 +285,97 @@
 
 <script>
 
-/**
- * Add duration time.
- */
-window.addEventListener(
-	'load',
-	function (){
-		var audioPlayer = document.getElementById( "audio-player" );
-		var durationTime = document.getElementById( "duration-time" );
-		durationTime.innerHTML = Math.floor( audioPlayer.duration * 10 ) / 10;
 
-		// Set default volume
-	    var volume = localStorage.getItem( 'volume');
-	    volume = volume.substring( 0, volume.length - 1 );
-//localStorage.setItem( 'volume', 0 );
+(function () {
 
-		changeVolume( volume );
-	}
-);
 
-/**
- * Process clicks.
- */
-window.addEventListener(
-	'click',
-	function ( e ){
-
-		// Mute button
-		if ( "mute" == e.target.id ) {
+	/**
+	 * Add duration time.
+	 */
+	window.addEventListener(
+		'load',
+		function (){
 			var audioPlayer = document.getElementById( "audio-player" );
+			var durationTime = document.getElementById( "duration-time" );
+			durationTime.innerHTML = Math.floor( audioPlayer.duration * 10 ) / 10;
 
-		    if ( "true" == localStorage.getItem( 'mute' ) ) {
-			    localStorage.setItem( 'mute', false );
-				var volume = document.getElementById("volume-value").innerHTML;
-				audioPlayer.volume = ( volume / 100 );
+			// Set default volume
+		    var volume = localStorage.getItem( 'volume');
+		    volume = volume.substring( 0, volume.length - 1 );
+			changeVolume( volume );
+		}
+	);
 
-		    } else {
-			    localStorage.setItem( 'mute', true );
-				audioPlayer.volume = 0;
-		    }
+	/**
+	 * Process clicks.
+	 */
+	window.addEventListener(
+		'click',
+		function ( e ){
+
+			// Mute button
+			if ( "mute" == e.target.id ) {
+				var audioPlayer = document.getElementById( "audio-player" );
+
+			    if ( "true" == localStorage.getItem( 'mute' ) ) {
+				    localStorage.setItem( 'mute', false );
+					var volume = document.getElementById("volume-value").innerHTML;
+					audioPlayer.volume = ( volume / 100 );
+
+			    } else {
+				    localStorage.setItem( 'mute', true );
+					audioPlayer.volume = 0;
+			    }
+
+			}
 
 		}
+	);
 
-	}
-);
+	/**
+	 * Live update stuff.
+	 */
+	setInterval(
+		function() {
+			var audioPlayer = document.getElementById( "audio-player" );
 
-/**
- * Live update stuff.
- */
-setInterval(
-	function() {
-		var audioPlayer = document.getElementById( "audio-player" );
+			var roundedTime = Math.floor( audioPlayer.currentTime * 10 );
 
-		var roundedTime = Math.floor( audioPlayer.currentTime * 10 );
+			// Set current time box
+			var currentTime = document.getElementById( "current-time" );
+			currentTime.innerHTML = roundedTime / 10;
 
-		// Set current time box
-		var currentTime = document.getElementById( "current-time" );
-		currentTime.innerHTML = roundedTime / 10;
+			// Set time slider
+			var timeControl = document.getElementById( "location-control" );
+			var width = timeControl.clientWidth;
+			var span = timeControl.childNodes[1];
+			var setting = ( ( audioPlayer.currentTime / audioPlayer.duration ) * width ) - span.clientWidth;
+			span.style.left = setting + "px";
 
-		// Set time slider
-		var timeControl = document.getElementById( "location-control" );
-		var width = timeControl.clientWidth;
-		var span = timeControl.childNodes[1];
-		var setting = ( ( audioPlayer.currentTime / audioPlayer.duration ) * width ) - span.clientWidth;
-		span.style.left = setting + "px";
+		},
+		100
+	);
 
-	},
-	100
-);
+	/**
+	 * Sporadically update stuff.
+	 */
+	setInterval(
+		function() {
 
-/**
- * Sporadically update stuff.
- */
-setInterval(
-	function() {
+			// Save volume to local database
+			var volume = document.getElementById("audio-player").volume;
 
-		// Save volume to local database
-		var volume = document.getElementById("audio-player").volume;
+			var volume = document.getElementById("volume-value").innerHTML;
+			console.log(volume);
 
-		var volume = document.getElementById("volume-value").innerHTML;
-		console.log(volume);
+			localStorage.setItem( 'volume', volume );
 
-		localStorage.setItem( 'volume', volume );
+		},
+		1000 * 1
+	);
 
-	},
-	1000 * 1
-);
+})();
+
 
 </script>
 
