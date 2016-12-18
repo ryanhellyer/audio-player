@@ -32,7 +32,6 @@ function changeVolume( volume ) {
  * @param  int  percentage_complete  The time completed in percentage
  */
 function changePlayerTimeStamp( percentage_complete ) {
-
 	var audioPlayer = document.getElementById( "audio-player" );
 
 	// Set duration time

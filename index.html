@@ -82,6 +82,9 @@
 	<!-- Mute button -->
 	<div id="mute"></div>
 
+	<!-- Play button -->
+	<div id="play"></div>
+
 	<!-- Audio visualiser -->
     <canvas id='canvas' width="800" height="350"></canvas>
 
@@ -288,6 +291,7 @@
 
 (function () {
 
+	var audioPlayer = document.getElementById( "audio-player" );
 
 	/**
 	 * Add duration time.
@@ -295,7 +299,6 @@
 	window.addEventListener(
 		'load',
 		function (){
-			var audioPlayer = document.getElementById( "audio-player" );
 			var durationTime = document.getElementById( "duration-time" );
 			durationTime.innerHTML = Math.floor( audioPlayer.duration * 10 ) / 10;
 
@@ -313,9 +316,8 @@
 		'click',
 		function ( e ){
 
-			// Mute button
 			if ( "mute" == e.target.id ) {
-				var audioPlayer = document.getElementById( "audio-player" );
+				// Mute button
 
 			    if ( "true" == localStorage.getItem( 'mute' ) ) {
 				    localStorage.setItem( 'mute', false );
@@ -327,6 +329,21 @@
 					audioPlayer.volume = 0;
 			    }
 
+			} else if ( "play" == e.target.id ) {
+				// Play button
+
+				if ( "paused" == e.target.className ) {
+					e.target.className = "";
+					audioPlayer.play();
+				} else {
+					audioPlayer.pause();
+					e.target.className = "paused";
+				}
+
+
+//console.log( audioPlayer );
+//console.dir( audioPlayer );
+
 			}
 
 		}
@@ -337,7 +354,6 @@
 	 */
 	setInterval(
 		function() {
-			var audioPlayer = document.getElementById( "audio-player" );
 
 			var roundedTime = Math.floor( audioPlayer.currentTime * 10 );
 
@@ -363,10 +379,9 @@
 		function() {
 
 			// Save volume to local database
-			var volume = document.getElementById("audio-player").volume;
+			var volume = audioPlayer.volume;
 
 			var volume = document.getElementById("volume-value").innerHTML;
-			console.log(volume);
 
 			localStorage.setItem( 'volume', volume );
 

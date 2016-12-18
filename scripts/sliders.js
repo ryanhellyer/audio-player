@@ -44,7 +44,6 @@ window.addEventListener(
 	function (){
 
 		// Set audio player volume
-		var audioPlayer = document.getElementById( "audio-player" );
 		var volume = localStorage.getItem( 'volume' );
 		changeVolume( volume );
 
