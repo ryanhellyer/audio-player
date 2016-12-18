@@ -1,8 +1,14 @@
+/**
+ * Generates the sliders used volume and time stamp position.
+ *
+ * @param  string  id      The ID of the element to be turned into a slider
+ * @param  object  onDrag  Callback function fired once slider has been created
+ */
 function Slider(id, onDrag) {
 
 	var range = document.getElementById(id),
 		dragger = range.children[0],
-		draggerWidth = 10, // width of your dragger
+		draggerWidth = 12, // width of your dragger
 		down = false,
 		rangeWidth, rangeLeft;
 
@@ -34,21 +40,3 @@ function Slider(id, onDrag) {
 	}
 
 }
-
-
-/**
- * Set initial audio player values on page load.
- */
-window.addEventListener(
-	'load',
-	function (){
-
-		// Set audio player volume
-		var volume = localStorage.getItem( 'volume' );
-		changeVolume( volume );
-
-	}
-);
-
-Slider('volume-control', changeVolume );
-Slider('location-control', changePlayerTimeStamp );

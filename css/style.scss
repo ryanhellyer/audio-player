@@ -8,6 +8,17 @@ $red: #dd0000;
 /* =Fonts
 -------------------------------------------------------------- */
 @font-face {
+		font-family: 'Icons';
+		src: url('../fonts/icons/icomoon.eot');
+		src: url('../fonts/icons/icomoon.eot?#iefix') format('embedded-opentype'),
+				 url('../fonts/icons/icomoon.woff') format('woff'),
+				 url('../fonts/icons/icomoon.ttf') format('truetype'),
+				 url('../fonts/icons/icomoon.svg#icomoon') format('svg');
+		font-weight: 400;
+		font-style: normal;
+}
+
+@font-face {
 		font-family: 'Open Sans Light';
 		src: url('../fonts/open-sans-light/OpenSans-Light-webfont.eot');
 		src: url('../fonts/open-sans-light/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
@@ -238,44 +249,57 @@ header button:hover {
 /* =Audio controls
 -------------------------------------------------------------- */
 
-#location-control {
+#time-stamp {
 	float: left;
-	width:20%;
-	height:20px;
-	margin:200px auto 1em;
-	position:relative;
-	cursor:e-resize;
-}
-
-#location-control:before {
-	content:"";
-	display:block;
-	position:absolute;
-	top:9px;
-	left:0;
 	width:100%;
-	height:2px;
-	background-color:black;
-}
-
-#location-control span {
-	display:block;
-	height:inherit;
+	height:20px;
+	margin: 0 auto;
 	position:relative;
-	z-index:2;
-	background-color:blue;
-	cursor:inherit;
+	cursor: pointer;
 }
 
+#time-stamp:before,
+#time-elapsed-line {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 5px;
+}
 
+#time-stamp:before {
+	content: "";
+	width: 100%;
+	background: #fff;
+}
 
+#time-elapsed-line {
+	width: 0;
+	background: $red;
+}
 
+#time-stamp span {
+	display: block;
+	visibility: hidden;
+	height: inherit;
+	position: relative;
+	top: -3px;
+	height: 12px;
+	z-index: 2;
+	background-color: $red;
+	cursor: pointer;
+	border-radius: 6px;
+}
+
+footer:hover #time-stamp span {
+	visibility: visible;
+}
 
 #volume-control {
 	float: left;
 	width:30%;
 	height:20px;
-	margin:200px auto 1em;
+	margin:0 auto 1em;
 	position:relative;
 	cursor:e-resize;
 }
@@ -303,7 +327,6 @@ header button:hover {
 #volume-value-wrapper {
 	float: left;
 	width: 10%;
-	margin-top: 200px;
 	line-height:1;
 }
 
@@ -312,19 +335,21 @@ header button:hover {
 	float: left;
 	width: 32px;
 	height: 32px;
-	margin-top: 200px;
+}
+
+#mute.muted {
+	background: url(../images/muted.png);
 }
 
 #play {
-	background: url(../images/play.png);
+	background: url(../images/pause.png);
 	float: left;
 	width: 32px;
 	height: 32px;
-	margin-top: 200px;
 }
 
 #play.paused {
-	background: url(../images/pause.png);
+	background: url(../images/play.png);
 }
 
 /* =Contents
@@ -332,11 +357,6 @@ header button:hover {
 
 article {
 	margin-bottom: 4rem;
-}
-
-#updated {
-	margin-top: 0;
-	font-size: 0.9em;
 }
 
 h1,
@@ -556,31 +576,6 @@ td {
 	padding: 1rem 1rem 1rem 0;
 }
 
-/* =Thumbs
--------------------------------------------------------------- */
-#thumbs {
-	margin: 4rem 0 0 0;
-}
-
-#thumbs a {
-	display: inline-block;
-	width: 50px;
-	height: 71px;
-	background: url(../images/thumbs.png);
-	text-indent: -999em;
-	margin: 0 0 0 1rem;
-	position: relative;
-	top: -1rem;
-}
-
-#thumbs a:hover {
-	opacity: 0.8;
-}
-
-a#thumb-down {
-	background-position: -50px 0;
-}
-
 /* =Comments
 -------------------------------------------------------------- */
 #discussion {
@@ -690,7 +685,8 @@ footer {
 	bottom: 0;
 	width: 100%;
 	height: 5em;
-	background: red;
+	background: #fff;
+	box-shadow: 0 0px 5px rgba(0,0,0,0.4);
 }
 
 
