@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Audio Player</title>
+<link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
+</head>
+<body>
+
+<header>
+
+	<div id="hamburger">&#9776;</div>
+
+	<div class="wrapper">
+
+		<a id="title" href="#" title="Audio Player" rel="home">
+			<h1>
+				Araesing <span>Audio</span>
+			</h1>
+		</a>
+
+		<nav>
+			<form>
+
+				<button value="All" name="genre" />All</button>
+				<button value="Rock" name="genre" />Rock</button>
+				<button class="active" value="Country" name="genre" />Country</button>
+				<button value="Pop" name="genre" />Pop</button>
+				<button value="Classic" name="genre" />Classic</button>
+
+				<div class="select-box">
+					<label>Duration</label>
+					<select>
+						<option>All durations</option>
+						<option>&lt; 0:30</option>
+						<option>0:30 - 1:00</option>
+						<option>1:00 - 1:30</option>
+						<option>1:30 - 2:00</option>
+						<option>2:00 - 2:30</option>
+						<option>2:30 - 3:00</option>
+						<option>3:00 - 3:30</option>
+						<option>3:30 - 4:00</option>
+						<option>4:00 - 4:30</option>
+						<option>4:30 - 5:00</option>
+						<option>&gt; 5:00</option>
+					</select>
+				</div>
+
+				<div class="select-box">
+					<label>Orderby</label>
+					<select>
+						<option>Highest rated</option>
+						<option>Most popular</option>
+					</select>
+				</div>
+
+			</form>
+		</nav>
+
+	</div>
+
+</header>
+
+<div class="wrapper">
+
+	<!-- Volume control -->
+	<div id="volume-control">
+		<span></span>
+	</div>
+	<div id="volume-value">0%</div>
+
+	<div id="current-time" style="float:left;margin-top:200px;width:5%;height:30px;border:1px solid red;">Current time</div>
+
+	<div id="duration-time" style="float:left;margin-top:200px;width:5%;height:30px;border:1px solid lime;">Duration time</div>
+
+	<!-- Location control -->
+	<div id="location-control">
+		<span></span>
+	</div>
+
+	<!-- Mute button -->
+	<div id="mute"></div>
+
+	<!-- Audio visualiser -->
+    <canvas id='canvas' width="800" height="350"></canvas>
+
+    <!-- Document list -->
+	<ul id="documents">
+		<li>
+			<a href="#">
+				<strong>Abmeldung/ deregistration</strong>
+
+				How to abmeldung/ deregister with the Meldebehörde (the opposite of Anmeldung)
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Accommodation</strong>
+
+				Find somewhere to live. WG (shared apartments), own apartments, temporary accommdation.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>AirBNB / Holiday Rentals</strong>
+
+				Explanation of who, why, where, what and how you can rent a place out on Holiday Rentals.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Banking</strong>
+
+				Tips on which German banks to sign up for, what to watch out for, bank fees.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Best places to get food</strong>
+
+				Where to find the best food in Berlin. Restaurants, takeaways etc.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Bürgeramt Anmeldung</strong>
+
+				How to register your address in Berlin.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Cleaning Services</strong>
+
+				Putzfrau. Where to find someone to clean your flat.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Co-working</strong>
+
+				The best cafes with WiFi and co-working offices.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Common questions</strong>
+
+				Answers to many questions, including where to find the best food, tailors, print shops etc.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Computer and phone repairs</strong>
+
+				Dropped your phone in the toilet? Computer not working?
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Currency Exchange</strong>
+
+				Information on how to get currencies exchanged.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Doctors, dentists, hospitals</strong>
+
+				Emergency numbers, lawyers, English speaking doctors, dentists etc.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Downloading</strong>
+
+				The implications of downloading copyrighted content in Germany.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Handy people, repairs, furniture moving</strong>
+
+				Find somewhere to get stuff repaired, finding handy people to assist with stuff around the home, furniture moving
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Health Insurance</strong>
+
+				Information about health insurance in Germany
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Immigration</strong>
+
+				informationa bout Immigration lawyers and resources for refugees.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Jobs</strong>
+
+				Where to look for jobs. Informal jobs, professional job sites, job Facebook groups.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Learn German</strong>
+
+				Resources for learning German and recommendations for schools to join.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Leaving Germany for good?</strong>
+
+				Check list for what to do when leaving Germany permanently.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Locksmiths</strong>
+
+				Where to find the best locksmiths (Schlüsseldienst) and key cutting services.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Phone and internet</strong>
+
+				Information about the various phone and internet services available.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Police</strong>
+
+				How to contact the police, including for emergencies and non-emergencies.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Rote Karte</strong>
+
+				"Red Card" certification for safety and sanitization. Required for working in kitchens.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Rundfunkbeitrag</strong>
+
+				Information about the compulsory TV/radio license fee.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>Tax advisors</strong>
+
+				Recommendations for Steuerberater.
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<strong>VPN</strong>
+
+				How to protect your internet privacy via a VPN.
+			</a>
+		</li>
+	</ul>
+
+	<footer>
+		<div class="wrapper">
+
+			<audio id="audio-player" controls>
+				<source src="audio/song.mp3" type="audio/mp3">
+				Your browser does not support the audio tag.
+			</audio>
+		</div>
+	</footer>
+
+</div>
+
+<script>
+
+/**
+ * Add duration time.
+ */
+window.addEventListener(
+	'load',
+	function (){
+		var audioPlayer = document.getElementById( "audio-player" );
+		var durationTime = document.getElementById( "duration-time" );
+		durationTime.innerHTML = Math.floor( audioPlayer.duration * 10 ) / 10;
+
+		// Set default volume
+	    var volume = localStorage.getItem( 'volume');
+//	    console.log( volume );
+		changeVolume( volume * 100 );
+	}
+);
+
+/**
+ * Process clicks.
+ */
+window.addEventListener(
+	'click',
+	function ( e ){
+
+		// Mute button
+		if ( "mute" == e.target.id ) {
+			// set volume to zero
+			changeVolume( 0 );
+		}
+
+	}
+);
+
+/**
+ * Live update stuff.
+ */
+setInterval(
+	function() {
+		var audioPlayer = document.getElementById( "audio-player" );
+
+		var roundedTime = Math.floor( audioPlayer.currentTime * 10 );
+
+		// Set current time box
+		var currentTime = document.getElementById( "current-time" );
+		currentTime.innerHTML = roundedTime / 10;
+
+		// Set time slider
+		var timeControl = document.getElementById( "location-control" );
+		var width = timeControl.clientWidth;
+		var span = timeControl.childNodes[1];
+		var setting = ( ( audioPlayer.currentTime / audioPlayer.duration ) * width ) - span.clientWidth;
+		span.style.left = setting + "px";
+
+	},
+	100
+);
+
+/**
+ * Sporadically update stuff.
+ */
+setInterval(
+	function() {
+
+		// Save volume to local database
+		var volume = document.getElementById("audio-player").volume;
+		localStorage.setItem( 'volume', volume );
+
+	},
+	1000 * 1
+);
+
+</script>
+
+<script src="scripts/functions.js"></script>
+<script src="scripts/audio-visualiser.js"></script>
+<script src="scripts/sliders.js"></script>
+
+</body>
+</html>
