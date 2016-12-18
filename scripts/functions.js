@@ -12,10 +12,10 @@ function changeVolume( volume ) {
 	// If muted, then set player volume to zero, otherwise set to chosen value
     if ( "true" == localStorage.getItem( 'mute' ) ) {
 		audioPlayer.volume = 0;
-		mute.className = "muted";
+		mute.className = "muted icon-button";
 	} else {
 		audioPlayer.volume = ( volume / 100 );
-		mute.className = "";
+		mute.className = "icon-button";
 	}
 
 	// Set volume control position

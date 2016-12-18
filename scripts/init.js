@@ -17,6 +17,16 @@
 			var volume = localStorage.getItem( 'volume' );
 			changeVolume( volume );
 
+			// Set mute button class
+			if ( "true" == localStorage.getItem( 'mute') ) {
+				mute.className = "muted icon-button";
+			} else {
+				mute.className = "icon-button";
+			}
+
+			// Make footer visible - kept hidden to avoid things flashing whilst it's loading
+			var footer = document.getElementById( "footer" );
+			footer.style.display = "block";
 		}
 	);
 
@@ -33,22 +43,22 @@
 			    if ( "true" == localStorage.getItem( 'mute' ) ) {
 				    localStorage.setItem( 'mute', false );
 					audioPlayer.volume = ( volumeValue.innerHTML / 100 );
-					e.target.className = "";
+					e.target.className = "icon-button";
 			    } else {
 				    localStorage.setItem( 'mute', true );
 					audioPlayer.volume = 0;
-					e.target.className = "muted";
+					e.target.className = "muted icon-button";
 			    }
 
 			} else if ( "play" == e.target.id ) {
 				// Play button
 
-				if ( "paused" == e.target.className ) {
-					e.target.className = "";
+				if ( "paused icon-button" == e.target.className ) {
+					e.target.className = "icon-button";
 					audioPlayer.play();
 				} else {
 					audioPlayer.pause();
-					e.target.className = "paused";
+					e.target.className = "paused icon-button";
 				}
 
 			}

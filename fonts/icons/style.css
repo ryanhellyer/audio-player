@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?hurspd');
-  src:  url('fonts/icomoon.eot?hurspd#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?hurspd') format('truetype'),
-    url('fonts/icomoon.woff?hurspd') format('woff'),
-    url('fonts/icomoon.svg?hurspd#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?oqys0u');
+  src:  url('fonts/icomoon.eot?oqys0u#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?oqys0u') format('truetype'),
+    url('fonts/icomoon.woff?oqys0u') format('woff'),
+    url('fonts/icomoon.svg?oqys0u#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-heart-o:before {
+  content: "\e905";
+}
+.icon-heart:before {
+  content: "\e906";
+}
+.icon-movie:before {
+  content: "\e904";
+}
 .icon-play3:before {
   content: "\ea1c";
 }
@@ -51,7 +60,25 @@
 .icon-loop2:before {
   content: "\ea2e";
 }
-.icon-shuffle:before {
-  content: "\ea30";
+.icon-star-empty:before {
+  content: "\e9d7";
+}
+.icon-star-half:before {
+  content: "\e9d8";
+}
+.icon-star-full:before {
+  content: "\e9d9";
+}
+.icon-thumb-down:before {
+  content: "\e900";
+}
+.icon-thumb-down2:before {
+  content: "\e901";
+}
+.icon-thumb-up:before {
+  content: "\e902";
+}
+.icon-thumb-up2:before {
+  content: "\e903";
 }
 

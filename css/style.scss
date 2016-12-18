@@ -3,6 +3,7 @@
  */
 
 $red: #dd0000;
+$red_hover: #dd3333;
 
 
 /* =Fonts
@@ -172,7 +173,8 @@ header button:hover {
 .select-box {
 	float: left;
 	margin: 1.5rem 0 0 2rem;
-	background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+	/*background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;*/
+	background: orange;
 	height: 2rem;
 	line-height: 1.8rem;
 	overflow: hidden;
@@ -249,6 +251,217 @@ header button:hover {
 /* =Audio controls
 -------------------------------------------------------------- */
 
+/* Icon buttons */
+
+.icon-button {
+	display: inline-block;
+	font-family: Icons;
+	font-size: 1.6rem;
+}
+
+.icon-button span {
+	display: none;
+}
+
+.icon-button span.value {
+	display: block;
+	width: 100%;
+	text-indent: 0.5rem;
+	font-size: 0.7rem;
+	font-family: 'Open Sans';
+}
+
+.icon-button:hover {
+	color: $red;
+	cursor: pointer;
+}
+
+/* Main play controls */
+
+#play-controls {
+	width: 50%;
+	margin: 0 auto;
+}
+
+#previous,
+#next {
+	position: relative;
+	top: -0.2rem;
+}
+
+#previous:before {
+	content: "\ea23";
+}
+
+#play {
+	font-size: 2rem;
+	color: #fff;
+	border-radius: 2rem;
+	background: $red;
+	padding: 1rem;
+	margin: 0 1rem;
+}
+
+#play:hover {
+	background: $red_hover;
+}
+
+#next:before {
+	content: "\ea24";
+}
+
+#play:before {
+	content: "\ea1d";
+}
+
+#play.paused:before {
+	content: "\ea1c";
+}
+
+/* Volume controls */
+
+#volume-wrapper {
+	z-index: 50;
+	float: right;
+	width: 25%;
+	margin: 1rem 2rem 0 0;
+}
+
+#volume-wrapper:hover #volume-control {
+	display: block;
+}
+
+#mute {
+	float: right;
+}
+
+#mute:before {
+	content: "\ea26";
+}
+
+#mute.muted:before {
+	content: "\ea2a";
+}
+
+#volume-control {
+	float: right;
+	display: none;
+	width: 10rem;
+	height: 12px;
+	margin: 0.35rem 1rem 0 0;
+	position: relative;
+	cursor: pointer;
+}
+
+#volume-control:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 5px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #aaa;
+}
+
+#volume-control span {
+	display: block;
+	height: 12px;
+	position: relative;
+	z-index: 2;
+	background: $red;
+	cursor: pointer;
+	border-radius: 6px;
+}
+
+/* Track information */
+#track-information {
+	float: left;
+	width: 25%;
+	margin: 0.1rem 0 0 2rem;
+	text-align: left;
+}
+
+#track-description {
+	float: left;
+	width: 70%;
+
+	:hover {
+		background: purple;
+	}
+
+	:hover h2,
+	:hover p{
+		color: $red;
+	}
+
+	h2 {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		text-align: left;
+		font-size: 1.0rem;
+		font-family: 'Open Sans', sans-serif;
+		font-weight: normal;
+		line-height: 1.5rem;
+	}
+
+	p {
+		display: inline-block;
+		margin: 0.2rem 0 0 0;
+		padding: 0;
+		text-align: left;
+		font-size: 0.8rem;
+		font-family: 'Open Sans', sans-serif;
+		font-weight: normal;
+		line-height: 1.2rem;
+	}
+
+}
+
+#ratings {
+	float: left;
+	width: 20%;
+	margin: 1rem 0 0 10%;
+
+	div {
+		width: 50%;
+		float: left;
+	}
+
+}
+
+#thumbs-up:before {
+	content: "\e902";
+}
+
+#thumbs-down:before {
+	content: "\e900";
+}
+
+
+
+
+
+
+
+
+#volume-value-wrapper {
+	float: left;
+	width: 10%;
+	line-height:1;
+}
+
+
+
+
+
+
+
+
+
+
+
 #time-stamp {
 	float: left;
 	width:100%;
@@ -295,62 +508,6 @@ footer:hover #time-stamp span {
 	visibility: visible;
 }
 
-#volume-control {
-	float: left;
-	width:30%;
-	height:20px;
-	margin:0 auto 1em;
-	position:relative;
-	cursor:e-resize;
-}
-
-#volume-control:before {
-	content:"";
-	display:block;
-	position:absolute;
-	top:9px;
-	left:0;
-	width:100%;
-	height:2px;
-	background-color:black;
-}
-
-#volume-control span {
-	display:block;
-	height:inherit;
-	position:relative;
-	z-index:2;
-	background-color:red;
-	cursor:inherit;
-}
-
-#volume-value-wrapper {
-	float: left;
-	width: 10%;
-	line-height:1;
-}
-
-#mute {
-	background: url(../images/speaker.png);
-	float: left;
-	width: 32px;
-	height: 32px;
-}
-
-#mute.muted {
-	background: url(../images/muted.png);
-}
-
-#play {
-	background: url(../images/pause.png);
-	float: left;
-	width: 32px;
-	height: 32px;
-}
-
-#play.paused {
-	background: url(../images/play.png);
-}
 
 /* =Contents
 -------------------------------------------------------------- */
@@ -679,14 +836,20 @@ input[type=submit]:hover {
 
 /* =Footer
 -------------------------------------------------------------- */
+
 footer {
 	position: fixed;
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	height: 5em;
+	height: 6.5rem;
 	background: #fff;
 	box-shadow: 0 0px 5px rgba(0,0,0,0.4);
+	text-align: center;
+}
+
+#footer {
+	display: none; /* Set to block via JS after page loaded */
 }
 
 
