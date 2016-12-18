@@ -45,15 +45,8 @@ window.addEventListener(
 
 		// Set audio player volume
 		var audioPlayer = document.getElementById( "audio-player" );
-		audioPlayer.volume = localStorage.getItem( 'volume' );
-
-		// Set volume value
-		var volumeValue = document.getElementById("volume-value");
-		volumeValue.innerHTML = localStorage.getItem( 'volume' ) * 100;
-
-		// Set volume slider
-		var volumeValue = document.getElementById("volume-value");
-		volumeValue.innerHTML = localStorage.getItem( 'volume' ) * 100;
+		var volume = localStorage.getItem( 'volume' );
+		changeVolume( volume );
 
 	}
 );

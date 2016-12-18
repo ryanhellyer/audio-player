@@ -68,7 +68,7 @@
 	<div id="volume-control">
 		<span></span>
 	</div>
-	<div id="volume-value">0%</div>
+	<div id="volume-value-wrapper"><span id="volume-value">0</span>%</div>
 
 	<div id="current-time" style="float:left;margin-top:200px;width:5%;height:30px;border:1px solid red;">Current time</div>
 
@@ -297,8 +297,10 @@ window.addEventListener(
 
 		// Set default volume
 	    var volume = localStorage.getItem( 'volume');
-//	    console.log( volume );
-		changeVolume( volume * 100 );
+	    volume = volume.substring( 0, volume.length - 1 );
+//localStorage.setItem( 'volume', 0 );
+
+		changeVolume( volume );
 	}
 );
 
@@ -311,8 +313,18 @@ window.addEventListener(
 
 		// Mute button
 		if ( "mute" == e.target.id ) {
-			// set volume to zero
-			changeVolume( 0 );
+			var audioPlayer = document.getElementById( "audio-player" );
+
+		    if ( "true" == localStorage.getItem( 'mute' ) ) {
+			    localStorage.setItem( 'mute', false );
+				var volume = document.getElementById("volume-value").innerHTML;
+				audioPlayer.volume = ( volume / 100 );
+
+		    } else {
+			    localStorage.setItem( 'mute', true );
+				audioPlayer.volume = 0;
+		    }
+
 		}
 
 	}
@@ -350,6 +362,10 @@ setInterval(
 
 		// Save volume to local database
 		var volume = document.getElementById("audio-player").volume;
+
+		var volume = document.getElementById("volume-value").innerHTML;
+		console.log(volume);
+
 		localStorage.setItem( 'volume', volume );
 
 	},
