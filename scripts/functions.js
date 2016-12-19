@@ -22,6 +22,7 @@ function changeVolume( volume ) {
 	var width = volumeControl.clientWidth;
 	var span = volumeControl.childNodes[1];
 	var setting = ( ( volume / 100 ) * width ) - span.clientWidth;
+
 	span.style.left = setting + "px";
 }
 
@@ -44,6 +45,13 @@ function changePlayerTimeStamp( percentage_complete ) {
 	timeElapsedLine.style.width = lineLength + "px";
 
 	// Set audio player time stamp
-	audioPlayer.currentTime = ( percentage_complete / 100 ) * audioPlayer.duration;
+//	audioPlayer.currentTime = ( percentage_complete / 100 ) * audioPlayer.duration;
+
+}
+
+function loadSong( audioFile ) {
+	var fileLocation = audioFileDir + audioFile + ".mp3";
+	audioPlayer.setAttribute('src', fileLocation );
+	audioPlayer.play();
 
 }

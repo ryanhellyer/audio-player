@@ -21,7 +21,7 @@
 
 		<ul>
 			<li class="active" id="home">
-				<a href="#">Home</a>
+				<a href="#home">Home</a>
 			</li>
 			<li id="upload">
 				<a href="#">Upload audio</a>
@@ -64,7 +64,7 @@
 			<button value="Chickweed" name="genre" />Chickweed</button>
 
 			<div class="select-box">
-				<label>Duration</label>
+				<label>Duration </label>
 				<select>
 					<option>All durations</option>
 					<option>&lt; 0:30</option>
@@ -270,6 +270,11 @@
 		<!-- Wrapper for play button controls -->
 		<div id="play-wrapper">
 
+			<!-- Repeat button -->
+			<div id="repeat-button" class="icon-button">
+				<span>Repeat</span>
+			</div>
+
 			<!-- Previous track button -->
 			<div id="previous" class="icon-button">
 				<span>Previous</span>
@@ -297,12 +302,14 @@
 </div>
 
 
+
+
 	</footer>
 
 </div>
 
 <audio id="audio-player">
-	<source src="audio/song.mp3" type="audio/mp3">
+	<source type="audio/mp3">
 	Your browser does not support the audio tag.
 </audio>
 

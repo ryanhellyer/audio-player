@@ -199,6 +199,8 @@ header {
 				background: $subtle_grey;
 
 				a {
+					pointer-events: none;
+					cursor: default;
 					color: $red;
 				}
 
@@ -267,7 +269,7 @@ header {
 	float: left;
 	font-family: 'Open Sans Extra Bold', sans-serif;
 	font-weight: 100;
-	margin: 1rem 0 0 0.2rem;
+	margin: 0.8rem 0 0 0.2rem;
 	font-size: 2rem;
 	color: #333;
 
@@ -280,6 +282,7 @@ header {
 
 header nav {
 	float: right;
+	margin: 0 2rem 0 0;
 }
 
 header button {
@@ -288,48 +291,45 @@ header button {
 	border: none;
 	font-size: 1.2rem;
 	padding: 1.8rem 1rem 1.4rem 1rem;
-	margin-bottom: 3px;
+	margin: 0 0.1rem 5px 0.1rem;
 }
 
 header button.active,
 header button:hover {
 	cursor: pointer;
-	border-bottom: 3px solid $red;
+	border-bottom: 5px solid $red;
 	margin-bottom: 0;
 }
 
 .select-box {
+
 	float: left;
 	margin: 1.5rem 0 0 2rem;
-	/*background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;*/
-	background: orange;
 	height: 2rem;
 	line-height: 1.8rem;
 	overflow: hidden;
 	width: 8rem;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
 	padding-left: 1rem;
-	background-color: #000;
-}
+	background: none;
 
-.select-box label {
-	display: none;
-}
+	label {
+		display: none;
+	}
 
-.select-box select {
-	color: #fff;
-	background: transparent;
-	border: none;
-	font-size: 14px;
-	height: 29px;
-	padding: 5px; /* If you add too much padding here, the options won't show in IE */
-	width: 9rem;
-}
+	select {
+		background: none;
+		border: none;
+		font-size: 1.2rem;
+		height: 29px;
+		padding: 5px; /* If you add too much padding here, the options won't show in IE */
+		width: 9rem;
+	}
 
-.select-box option {
-	color: #000 !important;
+	option {
+		font-size: 1.2rem;
+		color: #000 !important;
+	}
+
 }
 
 /* =Document list
@@ -411,10 +411,24 @@ header button:hover {
 	margin: 0 auto;
 }
 
+#repeat-button,
 #previous,
 #next {
 	position: relative;
 	top: -0.2rem;
+}
+
+#repeat-button {
+
+	&:before {
+		margin-right: 2rem;
+		content: "\ea2d";
+	}
+
+	&.active:before {
+		color: $red;
+	}
+
 }
 
 #previous:before {
@@ -456,7 +470,7 @@ header button:hover {
 }
 
 #volume-wrapper:hover #volume-control {
-	display: block;
+	visibility: visible;
 }
 
 #mute {
@@ -473,7 +487,7 @@ header button:hover {
 
 #volume-control {
 	float: right;
-	display: none;
+											visibility: visible;
 	width: 10rem;
 	height: 12px;
 	margin: 0.35rem 1rem 0 0;
@@ -609,7 +623,7 @@ header button:hover {
 
 #time-stamp span {
 	display: block;
-	visibility: hidden;
+/*	visibility: hidden;*/
 	height: inherit;
 	position: relative;
 	top: -3px;
@@ -998,7 +1012,7 @@ footer {
 }
 
 #footer {
-	display: none; /* Set to block via JS after page loaded */
+	visibility: hidden; /* Shown via JS after page loaded */
 }
 
 
