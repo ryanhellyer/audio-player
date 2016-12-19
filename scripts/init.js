@@ -50,7 +50,9 @@
 		function ( e ){
 
 			// All clicks off of side menu make it close
-			if ( 'BODY' == e.target.parentNode.tagName || 'HTML' == e.target.parentNode.tagName ) {
+			if ( "hamburger-menu" == e.target.id ) {
+				hamburgerMenu.className = "open";
+			} else if ( 'BODY' == e.target.parentNode.tagName || 'HTML' == e.target.parentNode.tagName ) {
 				hamburgerMenu.className = "";
 			} else if (
 				( null != e.target.parentNode && "hamburger-menu" == e.target.parentNode.id )
