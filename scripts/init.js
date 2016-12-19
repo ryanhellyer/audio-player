@@ -9,11 +9,10 @@
 
 			// Load current audio file
 			var audioFile = localStorage.getItem( 'current-audio' );
-			if ( "" == audioFile ) {
+			if ( null == audioFile ) {
 				audioFile = "song";
 			}
-			audioFile = "song2";
-			loadSong( audioFile );
+			loadAudioFile( audioFile );
 
 			durationTime.innerHTML = Math.floor( audioPlayer.duration * 10 ) / 10;
 
@@ -119,20 +118,39 @@
 			} else if ( "previous" == e.target.id ) {
 				// Previous button
 
-				if ( 5 < audioPlayer.currentTime ) {
+				if ( 2 < audioPlayer.currentTime ) {
 					audioPlayer.currentTime = 0;
 				} else {
 
 
 										// Change to the other file
-										if ( "song" == localStorage.getItem( 'current-audio' ) ) {
+										if (
+											"song" == localStorage.getItem( 'current-audio' )
+											||
+											null == localStorage.getItem( 'current-audio' )
+										) {
 											var audioFile = "song2";
 										} else {
 											var audioFile = "song";
 										}
-										loadSong( audioFile );
-
+										loadAudioFile( audioFile );
 				}
+			} else if ( "next" == e.target.id ) {
+				// Next button
+
+
+										// Change to the other file
+										if (
+											"song" == localStorage.getItem( 'current-audio' )
+											||
+											null == localStorage.getItem( 'current-audio' )
+										) {
+											var audioFile = "song2";
+										} else {
+											var audioFile = "song";
+										}
+										loadAudioFile( audioFile );
+
 
 			}
 
@@ -163,7 +181,7 @@
 				play.className = "paused icon-button";
 			}
 
-			changePlayerTimeStamp( percentage_complete );
+			changePlayerTimeStamp( percentage_complete, false );
 
 		},
 		100

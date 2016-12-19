@@ -30,8 +30,9 @@ function changeVolume( volume ) {
  * Change the audio player time stamp.
  *
  * @param  int  percentage_complete  The time completed in percentage
+ * param   bool callback true if callback
  */
-function changePlayerTimeStamp( percentage_complete ) {
+function changePlayerTimeStamp( percentage_complete, callback = true ) {
 
 	// Set duration time
 	durationTime.innerHTML = audioPlayer.duration;
@@ -44,14 +45,25 @@ function changePlayerTimeStamp( percentage_complete ) {
 	var lineLength = ( percentage_complete / 100 ) * timeControl.clientWidth;
 	timeElapsedLine.style.width = lineLength + "px";
 
-	// Set audio player time stamp
-//	audioPlayer.currentTime = ( percentage_complete / 100 ) * audioPlayer.duration;
+	// Set audio player time stamp - need to check this this resets the player time constantly, which causes audio glitches
+	if ( true == callback ) {
+		audioPlayer.currentTime = ( percentage_complete / 100 ) * audioPlayer.duration;
+	}
 
 }
 
-function loadSong( audioFile ) {
+/**
+ * Load an audio file.
+ *
+ * @param  string  audioFile  An audio file to load
+ */
+function loadAudioFile( audioFile ) {
 	var fileLocation = audioFileDir + audioFile + ".mp3";
-	audioPlayer.setAttribute('src', fileLocation );
+
+	localStorage.setItem( 'current-audio', audioFile );
+
+	audioPlayer.pause(); // Need to pause it or we get errors on changing SRC
+	audioPlayer.setAttribute( 'src', fileLocation );
 	audioPlayer.play();
 
 }
