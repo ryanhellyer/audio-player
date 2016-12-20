@@ -84,6 +84,12 @@ body {
 	background: #f8f8f8;
 }
 
+/* =Accessibility settings
+-------------------------------------------------------------- */
+.screen-reader-text {
+	display: none;
+}
+
 /* =Force HTML5 elements block
 -------------------------------------------------------------- */
 header,
@@ -648,7 +654,7 @@ footer:hover #time-stamp span {
 
 article {
 	max-width: 980px;
-	margin: 8rem auto 0 auto;
+	margin: 4rem auto 12rem auto;
 }
 
 #canvas {
@@ -938,7 +944,7 @@ td {
 
 #comments .reply {
 	display: inline-block;
-	background: #4864b3;
+	background: $red;
 	color: #fff;
 	font-weight: 600;
 	font-size: 0.8rem;
@@ -990,7 +996,7 @@ input:-moz-placeholder { /* Firefox 18- */
 }
 
 input[type=submit] {
-	background: #4864b3;
+	background: $red;
 	color: #fff;
 	font-weight: 600;
 	max-width: 300px;

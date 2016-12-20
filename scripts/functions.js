@@ -67,3 +67,29 @@ function loadAudioFile( audioFile ) {
 	audioPlayer.play();
 
 }
+
+/**
+ * Rating AJAX request.
+ * Sent when user clicks thumbs up or thumbs down button.
+ *
+ * @param  string  rating  up or down
+ */
+function rating_ajax_request(rating) {
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			if('Rating successful!'==xhttp.responseText){
+				document.getElementById('thumbs').innerHTML = 'Thanks for your feedback :)';
+
+				// Storing data
+
+
+// SHOULD STORE WHICH PAGE THE USER LIKED OR DISLIKED HERE
+
+			}
+		}
+	};
+	xhttp.open('POST', home_url+'?rating-'+rating+'='+page_id, true);
+	xhttp.send();
+}

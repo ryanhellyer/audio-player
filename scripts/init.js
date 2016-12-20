@@ -70,6 +70,7 @@
 				hamburgerMenu.className = "";
 			}
 
+
 			// Process button clicks
 			if ( "mute" == e.target.id ) {
 				// Mute button
@@ -154,6 +155,12 @@
 										loadAudioFile( audioFile );
 
 
+			} else if ( "thumbs-up" == e.target.id ) {
+				// Thumbs up button
+				rating_ajax_request( 'up' );
+			} else if ( "thumbs-down" == e.target.id ) {
+				// Thumbs down button
+				rating_ajax_request( 'down' );
 			}
 
 		}
