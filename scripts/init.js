@@ -7,11 +7,15 @@
 		'load',
 		function (){
 
-			// Load current audio file
+			// Loop through and find current posts audio file to use (use stored one if one non-audio page)
 			var audioFile = localStorage.getItem( 'current-audio' );
-			if ( null == audioFile ) {
-				audioFile = "song";
+			for ( slug in audio_posts ) {
+
+				if ( page_id == audio_posts[ slug ][ 'id' ] ) {
+					audioFile = slug;
+				}
 			}
+
 			loadAudioFile( audioFile );
 
 			durationTime.innerHTML = Math.floor( audioPlayer.duration * 10 ) / 10;
@@ -48,6 +52,56 @@
 	window.addEventListener(
 		'click',
 		function ( e ){
+
+			// Ignore href's on links to audio posts
+			if ( undefined != e.target.href ) {
+
+				var linked_url = e.target.href;
+				var substring = home_url + "/" + audio_slug + "/";
+				if ( linked_url.indexOf( substring ) !== -1 ) {
+
+					// Get requested audio slug
+					var slug = linked_url.replace( substring, "" );
+					slug = slug.replace( "/", "" );
+
+					// Process each bit of content individually
+					title.innerHTML   = audio_posts[ slug ][ 'title' ];
+					content.innerHTML = audio_posts[ slug ][ 'content' ];
+
+					// Set URL
+					var new_url = home_url + "/" + audio_slug + "/" + slug + "/";
+            		window.history.pushState( null, null, new_url );
+
+            		// Load new audio file into player
+					loadAudioFile( slug );
+
+					// Scroll to top of window
+					window.scrollTo( 0, 0 );
+
+					// Load new comments section via AJAX
+					commentsWrapper.innerHTML = "TESTING 1 2 3";
+					var audio_id = audio_posts[ slug ][ 'id' ];
+					var xmlhttp;
+					xmlhttp = new XMLHttpRequest();
+					xmlhttp.onreadystatechange = function() {
+						if ( xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
+
+							var response = JSON.parse( xmlhttp.responseText );
+							commentsWrapper.innerHTML = response[ 'comments' ];
+
+						}
+					}
+					xmlhttp.open( "GET", home_url + "?audio_id=" + audio_id, true );
+					xmlhttp.send();
+
+
+
+				}
+
+				// Kill link
+				e.stopPropagation();
+				e.preventDefault();
+			}
 
 			// All clicks off of side menu make it close
 			if ( "hamburger-menu" == e.target.id ) {
@@ -193,7 +247,7 @@
 			changePlayerTimeStamp( percentage_complete, false );
 
 		},
-		100
+		( 1000 / 30 ) // Second number is FPS
 	);
 
 	/**

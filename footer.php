@@ -9,96 +9,95 @@
  */
 ?>
 
-	<footer id="footer">
 
-		<!-- Time stamp -->
-		<div id="time-stamp">
+</div>
+
+<footer id="footer">
+
+	<!-- Time stamp -->
+	<div id="time-stamp">
+		<span></span>
+		<div id="time-elapsed-line"></div>
+	</div>
+
+	<!-- Track information -->
+	<div id="track-information">
+
+		<!-- Track description -->
+		<a href="#" id="track-description">
+			<h2></h2>
+			<p></p>
+		</a>
+
+		<!-- Ratings -->
+		<div id="ratings">
+
+			<div id="thumbs-up" class="icon-button">
+				<span>Thumbs up</span>
+				<span class="value">5</span>
+			</div>
+
+			<div id="thumbs-down" class="icon-button">
+				<span>Thumbs down</span>
+				<span class="value">2</span>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- Volume controls -->
+	<div id="volume-wrapper">
+
+		<!-- Mute button -->
+		<div id="mute" class="icon-button"></div>
+
+		<!-- Volume control -->
+		<div id="volume-control">
 			<span></span>
-			<div id="time-elapsed-line"></div>
 		</div>
 
-		<!-- Track information -->
-		<div id="track-information">
+	</div>
 
-			<!-- Track description -->
-			<a href="#" id="track-description">
-				<h2>Veggies es bonus vobis</h2>
-				<p>
-					Gumbo beet greens corn soko endive gumbo gourd parsley shallot courgette.
-				</p>
-			</a>
+	<!-- Wrapper for play button controls -->
+	<div id="play-wrapper">
 
-			<!-- Ratings -->
-			<div id="ratings">
-
-				<div id="thumbs-up" class="icon-button">
-					<span>Thumbs up</span>
-					<span class="value">5</span>
-				</div>
-
-				<div id="thumbs-down" class="icon-button">
-					<span>Thumbs down</span>
-					<span class="value">2</span>
-				</div>
-
-			</div>
-
+		<!-- Repeat button -->
+		<div id="repeat-button" class="icon-button">
+			<span>Repeat</span>
 		</div>
 
-
-		<!-- Volume controls -->
-		<div id="volume-wrapper">
-
-			<!-- Mute button -->
-			<div id="mute" class="icon-button"></div>
-
-			<!-- Volume control -->
-			<div id="volume-control">
-				<span></span>
-			</div>
-
+		<!-- Previous track button -->
+		<div id="previous" class="icon-button">
+			<span>Previous</span>
 		</div>
 
-		<!-- Wrapper for play button controls -->
-		<div id="play-wrapper">
-
-			<!-- Repeat button -->
-			<div id="repeat-button" class="icon-button">
-				<span>Repeat</span>
-			</div>
-
-			<!-- Previous track button -->
-			<div id="previous" class="icon-button">
-				<span>Previous</span>
-			</div>
-
-			<!-- Play button -->
-			<div id="play" class="icon-button">
-				<span>Play</span>
-			</div>
-
-			<!-- Next track button -->
-			<div id="next" class="icon-button">
-				<span>Next</span>
-			</div>
-
+		<!-- Play button -->
+		<div id="play" class="icon-button">
+			<span>Play</span>
 		</div>
+
+		<!-- Next track button -->
+		<div id="next" class="icon-button">
+			<span>Next</span>
+		</div>
+
+	</div>
 
 
 
 
 <div style="display:none;">
-		<div id="volume-value-wrapper"><span id="volume-value">0</span>%</div>
-		<div id="current-time" style="width:5%;height:30px;border:1px solid red;">Current time</div>
-		<div id="duration-time" style="width:5%;height:30px;border:1px solid lime;">Duration time</div>
+	<div id="volume-value-wrapper"><span id="volume-value">0</span>%</div>
+	<div id="current-time" style="width:5%;height:30px;border:1px solid red;">Current time</div>
+	<div id="duration-time" style="width:5%;height:30px;border:1px solid lime;">Duration time</div>
 </div>
 
 
 
 
-	</footer>
-
-</div>
+</footer>
 
 <audio id="audio-player">
 	<source type="audio/mp3">

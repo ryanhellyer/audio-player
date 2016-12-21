@@ -35,3 +35,4 @@ spl_autoload_register( 'autoload_arousingaudio' );
 new ArousingAudio_Setup;
 new ArousingAudio_Audio;
 new ArousingAudio_Ratings;
+new ArousingAudio_AJAX;

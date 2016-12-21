@@ -60,6 +60,7 @@ class ArousingAudio_Setup {
 		add_action( 'customize_register',                                    array( $this, 'customize_register' ) );
 		add_action( 'customize_render_control_' . self::HEADER_TEXT_OPTION,  array( $this, 'customizer_help' ) );
 		add_action( 'admin_head',                                            array( $this, 'admin_menu_link' ) );
+		add_action( 'wp_enqueue_scripts',                                    array( $this, 'set_js_vars' ), 99 );
 
 	}
 
@@ -145,6 +146,15 @@ class ArousingAudio_Setup {
 		);
 	}
 
+	public function set_js_vars() {
+		global $wp_query;
+
+		wp_localize_script( 'arousing-audio-init', 'page_id', (string) absint( $wp_query->post->ID ) );
+		wp_localize_script( 'arousing-audio-init', 'home_url', esc_url( home_url( ) ) );
+		wp_localize_script( 'arousing-audio-init', 'audio_slug', 'audio' );
+
+	}
+
 	/**
 	 * Adding required scripts.
 	 */
@@ -152,7 +162,7 @@ class ArousingAudio_Setup {
 
 		$scripts = array(
 			'functions',
-			'audio-vsualiser',
+			'audio-visualiser',
 			'sliders',
 			'globals',
 			'init',

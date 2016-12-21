@@ -8,35 +8,25 @@
 
 get_header(); 
 
-
-// Get audio data - we access it from this function to ensure that JS data blob matches the data used here
-$all_audio = arousingaudio_get_posts( get_the_ID() );
-foreach ( $all_audio as $audio_slug => $audio_data ) {
-
-	// Grab the current one only
-	if ( $audio_data[ 'id' ] == get_the_ID() ) {
-		$slug = $audio_slug;
-		$audio = $audio_data;
-	}
-}
+$id = $wp_query->post->ID;
+$id =
+$data = arousingaudio_get_post( $id );
 
 
-// Start of the Loop
-while ( have_posts() ) {
-	the_post();
-
-	?>
-<!-- Individual audio file page content -->
+echo '
 <article>
-	<h1><?php echo esc_html( $audio[ 'title'] ); ?></h1>
-	<?php echo wpautop( $audio[ 'content' ] );
 
-	// If comments are open or we have at least one comment, load up the comment template
-	if ( comments_open() || '0' != get_comments_number() ) {
-		comments_template( '', true );
-	}
+	<h1 id="title">' . esc_html( $data[ 'title' ] ) . '</h1>
 
-}
+	<div id="content">' . $data[ 'content' ] . '</div>
+
+	<!-- Audio visualiser -->
+	<canvas id="canvas" width="800" height="350"></canvas>
+
+	<div id="comments-wrapper">' . $data[ 'comments' ] . '</div>
+
+<article>';
 
 
 get_footer();
+

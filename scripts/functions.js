@@ -62,9 +62,25 @@ function loadAudioFile( audioFile ) {
 
 	localStorage.setItem( 'current-audio', audioFile );
 
+	// Set audio player SRC
 	audioPlayer.pause(); // Need to pause it or we get errors on changing SRC
 	audioPlayer.setAttribute( 'src', fileLocation );
 	audioPlayer.play();
+
+	// Set track description
+	for (i = 0; i < trackDescription.childNodes.length; i++) { 
+
+		trackDescription.style.display = "block";
+		trackDescription.href = home_url + "/" + audioFile;
+
+		if ( "H2" == trackDescription.childNodes[i][ 'tagName' ] ) {
+			trackDescription.childNodes[i].innerHTML = audio_posts[ audioFile ][ 'title' ];
+		} else if ( "P" == trackDescription.childNodes[i][ 'tagName' ] ) {
+			trackDescription.childNodes[i].innerHTML = audio_posts[ audioFile ][ 'excerpt' ];
+		}
+
+	}
+
 
 }
 

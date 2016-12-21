@@ -85,8 +85,9 @@
 	<nav>
 		<form>
 
-			<button value="Turnip" name="genre" />Turnip</button>
-			<button value="Beetroot" name="genre" />Beetroot</button>
+			<a href="http://arousingaudio.com/audio/radish/">Radish</a>
+			<a href="http://arousingaudio.com/audio/turnip/">Turnip</a>
+
 			<button class="active" value="Corn" name="genre" />Corn</button>
 			<button value="Celery" name="genre" />Celery</button>
 			<button value="Chickweed" name="genre" />Chickweed</button>

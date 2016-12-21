@@ -17,7 +17,6 @@ class ArousingAudio_Ratings {
 	public function __construct() {
 
 		add_action( 'template_redirect',  array( $this, 'process_rating' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'script' ), 20 );
 		add_action( 'add_meta_boxes',     array( $this, 'add_metabox' ) );
 
 	}
@@ -141,18 +140,6 @@ $ip = $ip . '.' . rand( 0, 999 ); // Temporary IP for testing
 
 		echo 'Rating successful!';
 		die;
-	}
-
-	public function script() {
-
-		// Bail out if no ID set
-		if ( '' == get_the_ID() ) {
-			return;
-		}
-
-		wp_localize_script( 'arousing-audio-init', 'page_id', get_the_ID() );
-		wp_localize_script( 'arousing-audio-init', 'home_url', esc_url( home_url( ) ) );
-
 	}
 
 }
