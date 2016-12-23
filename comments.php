@@ -28,11 +28,6 @@ function hellish_comments_navigation( $id = '' ) {
 if ( post_password_required() ) {
 	return;
 }
-?>
-
-<div id="comments" class="comments-area">
-
-<?php
 
 /**
  * Display the comments if any exist.
@@ -82,5 +77,3 @@ comment_form(
 );
 
 ?>
-
-</div><!-- #comments .comments-area -->

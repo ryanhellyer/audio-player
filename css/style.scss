@@ -200,7 +200,7 @@ header {
 				background: $light_grey;
 			}
 
-			&.active {
+			&.current-menu-item {
 
 				background: $subtle_grey;
 
@@ -286,30 +286,44 @@ header {
 }
 
 
-header nav {
-	float: right;
-	margin: 0 2rem 0 0;
-}
+header {
 
-header nav a,
-header button {
-	float: left;
-											color: #000 !important;
-											font-family: 'Open Sans';
-	background: none;
-	border: none;
-	font-size: 1.2rem;
-	padding: 1.8rem 1rem 1.4rem 1rem;
-	margin: 0 0.1rem 5px 0.1rem;
-}
+	nav {
 
-header nav a.active,
-header nav a:hover,
-header button.active,
-header button:hover {
-	cursor: pointer;
-	border-bottom: 5px solid $red;
-	margin-bottom: 0;
+		float: right;
+		margin: 0 2rem 0 0;
+
+		a:visited,
+		a {
+			display: block;
+			color: #000;
+			font-family: 'Open Sans';
+			background: none;
+			border: none;
+			font-size: 1.2rem;
+			padding: 1.8rem 1rem 1.4rem 1rem;
+			margin: 0 0.1rem 5px 0.1rem;
+		}
+
+		li.current-menu-item a,
+		a:hover {
+			cursor: pointer;
+			border-bottom: 5px solid $red;
+			margin-bottom: 0;
+			text-decoration: none;
+		}
+
+	}
+
+	ul,
+	ul li {
+		display: inline-block;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		line-height: 1rem;
+	}
+
 }
 
 .select-box {
@@ -437,7 +451,7 @@ header button:hover {
 		content: "\ea2d";
 	}
 
-	&.active:before {
+	&.current-menu-item:before {
 		color: $red;
 	}
 

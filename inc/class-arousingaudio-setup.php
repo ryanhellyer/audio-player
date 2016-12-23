@@ -61,6 +61,7 @@ class ArousingAudio_Setup {
 		add_action( 'customize_render_control_' . self::HEADER_TEXT_OPTION,  array( $this, 'customizer_help' ) );
 		add_action( 'admin_head',                                            array( $this, 'admin_menu_link' ) );
 		add_action( 'wp_enqueue_scripts',                                    array( $this, 'set_js_vars' ), 99 );
+		add_action( 'init',                                                  array( $this, 'menus' ) );
 
 	}
 
@@ -166,6 +167,7 @@ class ArousingAudio_Setup {
 			'sliders',
 			'globals',
 			'init',
+			'routing',
 		);
 
 		foreach ( $scripts as $script ) {
@@ -257,6 +259,20 @@ class ArousingAudio_Setup {
 			'span' => array(),
 		);
 		return wp_kses( $header_text, $allowed_html );
+	}
+
+	/**
+	 * Registering menus.
+	 */
+	public function menus() {
+
+		register_nav_menus(
+			array(
+				'header-menu'  => __( 'Header Menu', 'arousingaudio' ),
+				'sidebar-menu' => __( 'Sidebar Menu', 'arousingaudio' )
+			)
+		);
+
 	}
 
 }

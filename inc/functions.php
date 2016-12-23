@@ -86,9 +86,12 @@ function arousingaudio_get_post( $id ) {
 				}
 			}
 
+			$data[ 'slug' ]    = sanitize_title( $slug );
 			$data[ 'title' ]   = esc_html( $audio[ 'title'] );
 			$data[ 'content' ] = $audio[ 'content'];
+			$data[ 'audio' ]   = true;
 
+			// Get comments section as a big HTML string
 			ob_start();
 			global $withcomments;
 			$withcomments = 1;

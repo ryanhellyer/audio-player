@@ -39,6 +39,8 @@
 
 		?></div>
 
+		<?php wp_nav_menu( array( 'theme_location' => 'sidebar-menu' ) ); ?>
+
 		<ul>
 			<li class="active" id="home">
 				<a href="#home">Home</a>
@@ -83,14 +85,9 @@
 	</a>
 
 	<nav>
+		<?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
+<!--
 		<form>
-
-			<a href="http://arousingaudio.com/audio/radish/">Radish</a>
-			<a href="http://arousingaudio.com/audio/turnip/">Turnip</a>
-
-			<button class="active" value="Corn" name="genre" />Corn</button>
-			<button value="Celery" name="genre" />Celery</button>
-			<button value="Chickweed" name="genre" />Chickweed</button>
 
 			<div class="select-box">
 				<label>Duration </label>
@@ -119,8 +116,10 @@
 			</div>
 
 		</form>
+-->
 	</nav>
 
 </header>
 
 <div class="wrapper" id="main">
+	<article>

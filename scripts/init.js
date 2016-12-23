@@ -46,6 +46,16 @@
 		}
 	);
 
+
+function addClass(name, element) {
+  var classesString;
+  classesString = element.className || "";
+  if (classesString.indexOf(name) === -1) {
+    element.className += " " + name;
+  }
+}
+
+
 	/**
 	 * Handle clicks.
 	 */
@@ -53,54 +63,22 @@
 		'click',
 		function ( e ){
 
-			// Ignore href's on links to audio posts
-			if ( undefined != e.target.href ) {
+			// Handling current-menu-item classes
+			if ( undefined != e.target.parentNode.classList ) {
 
-				var linked_url = e.target.href;
-				var substring = home_url + "/" + audio_slug + "/";
-				if ( linked_url.indexOf( substring ) !== -1 ) {
+				// Remove all existing active items first
+				var all_lis = e.target.parentNode.parentNode.childNodes;
+				for (i = 0; i < all_lis.length; i++) {
 
-					// Get requested audio slug
-					var slug = linked_url.replace( substring, "" );
-					slug = slug.replace( "/", "" );
-
-					// Process each bit of content individually
-					title.innerHTML   = audio_posts[ slug ][ 'title' ];
-					content.innerHTML = audio_posts[ slug ][ 'content' ];
-
-					// Set URL
-					var new_url = home_url + "/" + audio_slug + "/" + slug + "/";
-            		window.history.pushState( null, null, new_url );
-
-            		// Load new audio file into player
-					loadAudioFile( slug );
-
-					// Scroll to top of window
-					window.scrollTo( 0, 0 );
-
-					// Load new comments section via AJAX
-					commentsWrapper.innerHTML = "TESTING 1 2 3";
-					var audio_id = audio_posts[ slug ][ 'id' ];
-					var xmlhttp;
-					xmlhttp = new XMLHttpRequest();
-					xmlhttp.onreadystatechange = function() {
-						if ( xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
-
-							var response = JSON.parse( xmlhttp.responseText );
-							commentsWrapper.innerHTML = response[ 'comments' ];
-
-						}
+					if ( undefined != all_lis[ i ].classList ) {
+						all_lis[ i ].classList.remove("current-menu-item");
 					}
-					xmlhttp.open( "GET", home_url + "?audio_id=" + audio_id, true );
-					xmlhttp.send();
-
-
 
 				}
 
-				// Kill link
-				e.stopPropagation();
-				e.preventDefault();
+				// Setting clicked item as active
+				addClass( "current-menu-item", e.target.parentNode );
+
 			}
 
 			// All clicks off of side menu make it close
@@ -114,10 +92,10 @@
 				( null != e.target.parentNode.parentNode && "hamburger-menu" == e.target.parentNode.parentNode.id )
 				||
 				( null != e.target.parentNode.parentNode.parentNode && "hamburger-menu" == e.target.parentNode.parentNode.parentNode.id )
-				||
-				( null != e.target.parentNode.parentNode.parentNode.parentNode && "hamburger-menu" == e.target.parentNode.parentNode.parentNode.parentNode.id )
-				||
-				( null != e.target.parentNode.parentNode.parentNode.parentNode.parentNode && "hamburger-menu" == e.target.parentNode.parentNode.parentNode.parentNode.parentNode.id )
+//				||
+//				( null != e.target.parentNode.parentNode.parentNode.parentNode && "hamburger-menu" == e.target.parentNode.parentNode.parentNode.parentNode.id )
+//				||
+//				( null != e.target.parentNode.parentNode.parentNode.parentNode.parentNode && "hamburger-menu" == e.target.parentNode.parentNode.parentNode.parentNode.parentNode.id )
 			) {
 				hamburgerMenu.className = "open";
 			} else {

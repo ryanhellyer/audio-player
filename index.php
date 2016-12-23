@@ -6,105 +6,50 @@
  * @since Arousing Audio 1.0
  */
 
+// Generate main page content string
+$content = '
+		<ul id="documents">';
+
+foreach ( arousingaudio_get_posts() as $slug => $post ) {
+	$content .= '
+			<li>
+				<a href="' . esc_url( get_permalink( $post[ 'id' ] ) ) . '">
+					<strong>' . esc_html( $post[ 'title' ] ) . '</strong>
+					' . esc_html( $post[ 'excerpt' ] ) . '
+				</a>
+			</li>';
+
+}
+
+$content .= '
+		</ul>
+';
+
+// AJAX page
+if ( isset( $_GET[ 'json' ] ) ) {
+
+	$data = array();
+	$data[ 'title' ]   = get_bloginfo( 'title' );
+	$data[ 'content' ] = $content;
+
+	echo json_encode( $data );
+	die;
+}
+
+
 get_header(); 
 
+echo '
+	<h1 id="title">' . esc_html( get_bloginfo( 'name' ) ) . '</h1>
 
-/*
-?>
+	<div id="content">' . $content . '</div>
 
-<div id="content-area">
-	<div id="site-content" role="main"><?php
+	<!-- Audio visualiser -->
+	<canvas id="canvas" width="800" height="350"></canvas>
 
-// If on search page, then display what we searched for
-if ( is_search() ) { ?>
-		<h1 class="page-title">
-			<?php printf( esc_html__( 'Search Results for: "%s" ...', 'arousingaudio' ), get_search_query() ); ?>
-		</h1><!-- .page-title --><?php
-}
+	<!-- Wrapper for comments -->
+	<div id="comments">' . $data[ 'comments' ] . '</div>
 
-// Set heading tags
-if ( is_home() || is_search() ) {
-	$post_heading_tag = 'h2';
-} else {
-	$post_heading_tag = 'h1';
-}
+';
 
-// Load main loop
-if ( have_posts() ) {
-
-	// Start of the Loop
-	while ( have_posts() ) {
-		the_post();
-		?>
-
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-			<header class="entry-header">
-				<<?php echo $post_heading_tag; // WPCS: XSS OK. ?> class="entry-title"><?php
-
-					// Don't display links on singular post titles
-					if ( is_singular() ) {
-						the_title();
-					} else {
-						?><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'arousingaudio' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a><?php
-					}
-
-					?></<?php echo $post_heading_tag; // WPCS: XSS OK. ?>><!-- .entry-title -->
-			</header><!-- .entry-header -->
-
-			<div class="entry-content"><?php
-
-				// Display full content for home page and single post pages
-				if ( is_home() || is_singular() ) {
-					the_content( esc_html__( 'Continue reading <span class="meta-nav">&rarr;</span>', 'arousingaudio' ) );
-					wp_link_pages( array( 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'arousingaudio' ), 'after' => '</div>' ) );
-				} else {
-
-					// Use the built in thumbnail system, otherwise attempt to display the latest attachment
-					if ( has_post_thumbnail() ) {
-						the_post_thumbnail( 'hellish-simplicity-excerpt-thumb' );
-					} elseif ( function_exists( 'get_the_image' ) ) {
-						get_the_image( array( 'size' => 'thumbnail' ) );
-					}
-					the_excerpt();
-				}
-				?>
-			</div><!-- .entry-content --><?php
-
-			// Don't display meta information on static pages
-			if ( ! is_page() ) {
-				get_template_part( 'template-parts/footer-meta' );
-			} ?>
-
-		</article><!-- #post-<?php the_ID(); ?> --><?php
-
-		// If comments are open or we have at least one comment, load up the comment template
-		if ( comments_open() || '0' != get_comments_number() ) {
-			comments_template( '', true );
-		}
-
-	}
-
-	get_template_part( 'template-parts/numeric-pagination' );
-
-}
-else {
-	get_template_part( 'template-parts/no-results' );
-}
-?>
-
-	</div><!-- #site-content --><?php
-
-	// Show sidebar if not on full width template
-	if ( 'full-width.php' != basename( get_page_template() ) ) {
-		get_template_part( 'template-parts/sidebar' );
-	}
-
-	?>
-</div><!-- #content-area -->
-
-<?php 
-*/
-
-
-get_footer(); ?>
+get_footer();

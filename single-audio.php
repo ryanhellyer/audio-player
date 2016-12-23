@@ -6,15 +6,20 @@
  * @since Arousing Audio 1.0
  */
 
-get_header(); 
-
 $id = $wp_query->post->ID;
-$id =
 $data = arousingaudio_get_post( $id );
+
+// AJAX page
+if ( isset( $_GET[ 'json' ] ) ) {
+
+	echo json_encode( $data );
+	die;
+}
+
+get_header(); 
 
 
 echo '
-<article>
 
 	<h1 id="title">' . esc_html( $data[ 'title' ] ) . '</h1>
 
@@ -23,10 +28,10 @@ echo '
 	<!-- Audio visualiser -->
 	<canvas id="canvas" width="800" height="350"></canvas>
 
-	<div id="comments-wrapper">' . $data[ 'comments' ] . '</div>
+	<!-- Wrapper for comments -->
+	<div id="comments">' . $data[ 'comments' ] . '</div>
 
-<article>';
+';
 
 
 get_footer();
-
