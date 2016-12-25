@@ -34,12 +34,12 @@
 
 			<div id="thumbs-up" class="icon-button">
 				<span>Thumbs up</span>
-				<span class="value">5</span>
+				<span id="thumbs-up-value" class="value"></span>
 			</div>
 
 			<div id="thumbs-down" class="icon-button">
 				<span>Thumbs down</span>
-				<span class="value">2</span>
+				<span id="thumbs-down-value" class="value"></span>
 			</div>
 
 		</div>

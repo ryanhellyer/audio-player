@@ -15,6 +15,9 @@ var volumeControl    = document.getElementById( "volume-control");
 var timeElapsedLine  = document.getElementById( "time-elapsed-line" );
 var repeatButton     = document.getElementById( "repeat-button" );
 var trackDescription = document.getElementById( "track-description" );
+var thumbsDown       = document.getElementById( "thumbs-down-value" );
+var thumbsUp         = document.getElementById( "thumbs-up-value" );
+
 
 // Menu
 var hamburgerMenu    = document.getElementById( "hamburger-menu" );

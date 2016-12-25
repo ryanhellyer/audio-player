@@ -29,7 +29,6 @@ class ArousingAudio_Audio {
 	public static function variables() {
 
 		$audio_posts = arousingaudio_get_posts( get_the_ID() );
-		echo "\n\n\n\n<!--\n" . print_r( $audio_posts, true ) . "\n-->\n\n\n\n";
 
 		wp_localize_script( 'arousing-audio-init', 'audio_posts', $audio_posts );
 

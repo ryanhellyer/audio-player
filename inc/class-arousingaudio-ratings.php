@@ -16,8 +16,19 @@ class ArousingAudio_Ratings {
 	 */
 	public function __construct() {
 
+		add_action( 'wp_enqueue_scripts', array( $this, 'set_js_vars' ), 99 );
 		add_action( 'template_redirect',  array( $this, 'process_rating' ) );
 		add_action( 'add_meta_boxes',     array( $this, 'add_metabox' ) );
+
+	}
+
+	public function set_js_vars() {
+		global $wp_query;
+
+		$current_id = $wp_query->post->ID;
+
+		wp_localize_script( 'arousing-audio-init', 'thumbs_up', (string) $this->get_ratings( 'up', "both", $current_id ) );
+		wp_localize_script( 'arousing-audio-init', 'thumbs_down', (string) $this->get_ratings( 'down', "both", $current_id ) );
 
 	}
 
@@ -65,7 +76,7 @@ class ArousingAudio_Ratings {
 	}
 
 
-	public function get_ratings( $direction, $_logged_in = false ) {
+	public function get_ratings( $direction, $_logged_in = false, $id ) {
 
 		if ( 'up' == $direction ) {
 			$value = 1;
@@ -73,19 +84,26 @@ class ArousingAudio_Ratings {
 			$value = 0;
 		}
 
-		$logged_in = '';
-		if ( true == $_logged_in ) {
-			$logged_in = '_logged_in';
+		$ratings = array();
+		if ( false == $_logged_in || "both" == $_logged_in ) {
+			$ratings = get_post_meta( $id, '_ratings', true );
+			if ( ! is_array( $ratings ) ) {
+				$ratings = array();
+			}
 		}
 
-		$ratings = get_post_meta( get_the_ID(), '_ratings' . $logged_in, true );
-		if ( ! is_array( $ratings ) ) {
-			$ratings = array();
+		$ratings_logged_in = array();
+		if ( true == $_logged_in || "both" == $_logged_in ) {
+			$ratings_logged_in = get_post_meta( $id, '_ratings_logged_in', true );
+			if ( ! is_array( $ratings_logged_in ) ) {
+				$ratings_logged_in = array();
+			}
 		}
 
-		$rating_counts = array_count_values ( $ratings );
+		$ratings_count = array_merge( $ratings, $ratings_logged_in );
+		$rating_counts = array_count_values( $ratings_count );
+
 		return $rating_counts[ $value ];
-
 	}
 
 	public function process_rating() {

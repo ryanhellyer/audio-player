@@ -46,16 +46,6 @@
 		}
 	);
 
-
-function addClass(name, element) {
-  var classesString;
-  classesString = element.className || "";
-  if (classesString.indexOf(name) === -1) {
-    element.className += " " + name;
-  }
-}
-
-
 	/**
 	 * Handle clicks.
 	 */
@@ -77,7 +67,7 @@ function addClass(name, element) {
 				}
 
 				// Setting clicked item as active
-				addClass( "current-menu-item", e.target.parentNode );
+				e.target.parentNode.classList.add( "current-menu-item" );
 
 			}
 

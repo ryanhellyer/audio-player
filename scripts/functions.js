@@ -58,29 +58,39 @@ function changePlayerTimeStamp( percentage_complete, callback = true ) {
  * @param  string  audioFile  An audio file to load
  */
 function loadAudioFile( audioFile ) {
+
 	var fileLocation = audioFileDir + audioFile + ".mp3";
 
 	localStorage.setItem( 'current-audio', audioFile );
 
-	// Set audio player SRC
-	audioPlayer.pause(); // Need to pause it or we get errors on changing SRC
-	audioPlayer.setAttribute( 'src', fileLocation );
-	audioPlayer.play();
+	if ( audioPlayer.src != fileLocation ) {
 
-	// Set track description
-	for (i = 0; i < trackDescription.childNodes.length; i++) { 
+		// Set audio player SRC
+		audioPlayer.pause(); // Need to pause it or we get errors on changing SRC
+		audioPlayer.setAttribute( 'src', fileLocation );
+		audioPlayer.play();
 
-		trackDescription.style.display = "block";
-		trackDescription.href = home_url + "/" + audioFile;
+		// Set track description
+		for (i = 0; i < trackDescription.childNodes.length; i++) { 
 
-		if ( "H2" == trackDescription.childNodes[i][ 'tagName' ] ) {
-			trackDescription.childNodes[i].innerHTML = audio_posts[ audioFile ][ 'title' ];
-		} else if ( "P" == trackDescription.childNodes[i][ 'tagName' ] ) {
-			trackDescription.childNodes[i].innerHTML = audio_posts[ audioFile ][ 'excerpt' ];
+			trackDescription.style.display = "block";
+			trackDescription.href = home_url + "/" + audioFile;
+
+			if ( "H2" == trackDescription.childNodes[i][ 'tagName' ] ) {
+				trackDescription.childNodes[i].innerHTML = audio_posts[ audioFile ][ 'title' ];
+			} else if ( "P" == trackDescription.childNodes[i][ 'tagName' ] ) {
+				trackDescription.childNodes[i].innerHTML = audio_posts[ audioFile ][ 'excerpt' ];
+			}
+
 		}
 
-	}
+		// Set ratings
+		thumbsUp.innerHTML = thumbs_up;
+		thumbsDown.innerHTML = thumbs_down;
 
+
+
+	}
 
 }
 
@@ -96,9 +106,13 @@ function rating_ajax_request(rating) {
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
 			if('Rating successful!'==xhttp.responseText){
-				document.getElementById('thumbs').innerHTML = 'Thanks for your feedback :)';
 
 				// Storing data
+				if ( "down" == rating ) {
+					thumbsDown.innerHTML = parseInt( thumbsDown.innerHTML ) + 1;
+				} else if ( "up" == rating ) {
+					thumbsUp.innerHTML = parseInt( thumbsUp.innerHTML ) + 1;
+				}
 
 
 // SHOULD STORE WHICH PAGE THE USER LIKED OR DISLIKED HERE
