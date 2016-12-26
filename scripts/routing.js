@@ -4,6 +4,16 @@
 	var stored_pathname;
 
 	/**
+	 * Need to set stored pathname so that we don't do an AJAX request on initial page load.
+	 */
+	window.addEventListener(
+		'load',
+		function (){
+			stored_pathname = location.pathname;
+		}
+	);
+
+	/**
 	 * Add / Update a key-value pair in the URL query parameters.
 	 *
 	 * @param  uri  The URI
