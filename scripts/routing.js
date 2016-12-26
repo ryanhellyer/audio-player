@@ -101,6 +101,9 @@
 							loadAudioFile( response[ 'slug' ] );
 						}
 
+						// Handle frontend audio uploads (controlled via seperate plugin)
+						Frontend_Audio_Uploader();
+
 					}
 				}
 				xmlhttp.open( "GET", json_url, true );

@@ -41,33 +41,6 @@
 
 		<?php wp_nav_menu( array( 'theme_location' => 'sidebar-menu' ) ); ?>
 
-		<ul>
-			<li class="active" id="home">
-				<a href="#home">Home</a>
-			</li>
-			<li id="upload">
-				<a href="#">Upload audio</a>
-			</li>
-			<li id="record">
-				<a href="#">Record audio</a>
-			</li>
-			<li id="login">
-				<a href="#">Log in</a>
-			</li>
-			<li id="register">
-				<a href="#">Register</a>
-			</li>
-			<li id="about">
-				<a href="#">About</a>
-			</li>
-			<li id="contact">
-				<a href="#">Contact</a>
-			</li>
-			<li id="legal-notice">
-				<a href="#">Legal notice</a>
-			</li>
-		</ul>
-
 	</div>
 
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">

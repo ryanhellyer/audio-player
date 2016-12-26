@@ -38,7 +38,7 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 				'id'             => get_the_ID(),
 				'title'          => get_the_title(),
 				'excerpt'        => get_the_excerpt(),
-				'content'        => wpautop( get_the_content() ),
+				'content'        => apply_filters( 'the_content', get_the_content() ),
 
 				// May not be needed, just dumping here in case they're useful later
 				'length'         => (string) absint( $audio_file_meta[ 'length' ] ),
@@ -64,32 +64,24 @@ function arousingaudio_get_post( $id ) {
 	$the_query = new WP_Query(
 		array(
 			'p'         => absint( $id ),
-			'post_type' => array( 'audio' ),
+			'post_type' => array( 'any' ),
 		)
 	);
 
-	$all_audio = arousingaudio_get_posts( $id );
+//	$all_audio = arousingaudio_get_posts( $id );
 
-	$data = array();
+//	$data = array();
 	if ( $the_query->have_posts() ) {
 
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
 
-			// Get audio data - we access it from this function to ensure that JS data blob matches the data used here
-			foreach ( $all_audio as $audio_slug => $audio_data ) {
-
-				// Grab the current one only
-				if ( $audio_data[ 'id' ] == get_the_ID() ) {
-					$slug = $audio_slug;
-					$audio = $audio_data;
-				}
+			$data[ 'slug' ]    = sanitize_title( get_post_field( 'post_name' ) );
+			$data[ 'title' ]   = esc_html( get_the_title() );
+			$data[ 'content' ] = apply_filters( 'the_content', get_the_content() );
+			if ( 'audio' == get_post_type() ) {
+				$data[ 'audio' ] = true;
 			}
-
-			$data[ 'slug' ]    = sanitize_title( $slug );
-			$data[ 'title' ]   = esc_html( $audio[ 'title'] );
-			$data[ 'content' ] = $audio[ 'content'];
-			$data[ 'audio' ]   = true;
 
 			// Get comments section as a big HTML string
 			ob_start();
