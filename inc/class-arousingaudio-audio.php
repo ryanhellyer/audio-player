@@ -92,7 +92,7 @@ class ArousingAudio_Audio {
 		);
 
 		$args = array(
-			'hierarchical'      => true,
+			'hierarchical'      => false,
 			'labels'            => $labels,
 			'show_ui'           => true,
 			'show_admin_column' => true,
@@ -102,37 +102,6 @@ class ArousingAudio_Audio {
 
 		register_taxonomy( 'genre', array( 'audio' ), $args );
 
-		// Add new taxonomy, NOT hierarchical (like tags)
-		$labels = array(
-			'name'                       => _x( 'Writers', 'taxonomy general name', 'arousingaudio' ),
-			'singular_name'              => _x( 'Writer', 'taxonomy singular name', 'arousingaudio' ),
-			'search_items'               => __( 'Search Writers', 'arousingaudio' ),
-			'popular_items'              => __( 'Popular Writers', 'arousingaudio' ),
-			'all_items'                  => __( 'All Writers', 'arousingaudio' ),
-			'parent_item'                => null,
-			'parent_item_colon'          => null,
-			'edit_item'                  => __( 'Edit Writer', 'arousingaudio' ),
-			'update_item'                => __( 'Update Writer', 'arousingaudio' ),
-			'add_new_item'               => __( 'Add New Writer', 'arousingaudio' ),
-			'new_item_name'              => __( 'New Writer Name', 'arousingaudio' ),
-			'separate_items_with_commas' => __( 'Separate writers with commas', 'arousingaudio' ),
-			'add_or_remove_items'        => __( 'Add or remove writers', 'arousingaudio' ),
-			'choose_from_most_used'      => __( 'Choose from the most used writers', 'arousingaudio' ),
-			'not_found'                  => __( 'No writers found.', 'arousingaudio' ),
-			'menu_name'                  => __( 'Writers', 'arousingaudio' ),
-		);
-
-		$args = array(
-			'hierarchical'          => false,
-			'labels'                => $labels,
-			'show_ui'               => true,
-			'show_admin_column'     => true,
-			'update_count_callback' => '_update_post_term_count',
-			'query_var'             => true,
-			'rewrite'               => array( 'slug' => 'writer' ),
-		);
-
-		register_taxonomy( 'writer', 'audio', $args );
 	}
 
 }

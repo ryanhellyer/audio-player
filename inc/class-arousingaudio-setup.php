@@ -69,6 +69,9 @@ class ArousingAudio_Setup {
 	 * Add the header text option.
 	 */
 	public function add_option() {
+
+		add_option( 'arousingaudio_status', 'draft' ); // Ensures that all posts are set as drafts by default
+
 		add_option(
 			self::HEADER_TEXT_OPTION, // The header text option
 			self::DEFAULT_HEADER_TEXT // The default header text
