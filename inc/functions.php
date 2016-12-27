@@ -39,6 +39,8 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 				'title'          => get_the_title(),
 				'excerpt'        => get_the_excerpt(),
 				'content'        => apply_filters( 'the_content', get_the_content() ),
+				'thumbs_up'      => arousingaudio_get_ratings( 'up', 'both', get_the_ID() ),
+				'thumbs_down'    => arousingaudio_get_ratings( 'down', 'both', get_the_ID() ),
 
 				// May not be needed, just dumping here in case they're useful later
 				'length'         => (string) absint( $audio_file_meta[ 'length' ] ),
@@ -100,4 +102,42 @@ function arousingaudio_get_post( $id ) {
 	}
 
 	return $data;
+}
+
+function arousingaudio_get_ratings( $direction, $_logged_in = false, $id ) {
+
+	if ( 'up' == $direction ) {
+		$value = 1;
+	} else {
+		$value = 0;
+	}
+
+	$ratings = array();
+	if ( false == $_logged_in || "both" == $_logged_in ) {
+		$ratings = get_post_meta( $id, '_ratings', true );
+		if ( ! is_array( $ratings ) ) {
+			$ratings = array();
+		}
+	}
+
+	$ratings_logged_in = array();
+	if ( true == $_logged_in || "both" == $_logged_in ) {
+		$ratings_logged_in = get_post_meta( $id, '_ratings_logged_in', true );
+		if ( ! is_array( $ratings_logged_in ) ) {
+			$ratings_logged_in = array();
+		}
+	}
+
+	$ratings_count = array_merge( $ratings, $ratings_logged_in );
+	$rating_counts = array_count_values( $ratings_count );
+
+	// If no ratings given, then set to zero
+	if ( ! isset( $rating_counts[0] ) ) {
+		$rating_counts[0] = 0;
+	}
+	if ( ! isset( $rating_counts[1] ) ) {
+		$rating_counts[1] = 0;
+	}
+
+	return $rating_counts[ $value ];
 }

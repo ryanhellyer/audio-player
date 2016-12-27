@@ -9,14 +9,14 @@ function changeVolume( volume ) {
 	// Set audio volume and displayed value
 	volumeValue.innerHTML = volume;
 
-	// If muted, then set player volume to zero, otherwise set to chosen value
-    if ( "true" == localStorage.getItem( 'mute' ) ) {
-		audioPlayer.volume = 0;
+	// Display mute icon when volume at zero
+	if ( 0 == volume ) {
 		mute.className = "muted icon-button";
 	} else {
-		audioPlayer.volume = ( volume / 100 );
 		mute.className = "icon-button";
 	}
+
+	audioPlayer.volume = ( volume / 100 );
 
 	// Set volume control position
 	var width = volumeControl.clientWidth;
@@ -85,10 +85,8 @@ function loadAudioFile( audioFile ) {
 		}
 
 		// Set ratings
-		thumbsUp.innerHTML = thumbs_up;
-		thumbsDown.innerHTML = thumbs_down;
-
-
+		thumbsUp.innerHTML = thumbs_up = audio_posts[ audioFile ][ 'thumbs_up' ];
+		thumbsDown.innerHTML = thumbs_down = audio_posts[ audioFile ][ 'thumbs_down' ];
 
 	}
 
@@ -120,6 +118,16 @@ function rating_ajax_request(rating) {
 			}
 		}
 	};
-	xhttp.open('POST', home_url+'?rating-'+rating+'='+page_id, true);
+
+	// Get current audio ID
+	for ( slug in audio_posts ) {
+
+		if ( audioPlayer.src == audioFileDir + slug + ".mp3" ) {
+			var audio_id = audio_posts[ slug ][ 'id' ];
+		}
+
+	}
+
+	xhttp.open('POST', home_url+'?rating-'+rating+'='+audio_id, true);
 	xhttp.send();
 }

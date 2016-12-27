@@ -7,13 +7,14 @@
 		'load',
 		function (){
 
-			// Loop through and find current posts audio file to use (use stored one if one non-audio page)
-			var audioFile = localStorage.getItem( 'current-audio' );
+			// Loop through and find current posts audio file to use (use stored one if on non-audio page)
+			audioFile = localStorage.getItem( 'current-audio' );
 			for ( slug in audio_posts ) {
 
 				if ( page_id == audio_posts[ slug ][ 'id' ] ) {
 					audioFile = slug;
 				}
+
 			}
 
 			loadAudioFile( audioFile );
@@ -25,7 +26,7 @@
 			changeVolume( volume );
 
 			// Set mute button class
-			if ( "true" == localStorage.getItem( 'mute') ) {
+			if ( 0 == volume ) {
 				mute.className = "muted icon-button";
 			} else {
 				mute.className = "icon-button";
@@ -54,20 +55,18 @@
 		function ( e ){
 
 			// Handling current-menu-item classes
-			if ( undefined != e.target.parentNode.classList ) {
+			if ( "LI" == e.target.parentNode.tagName ) {
 
 				// Remove all existing active items first
-				var all_lis = e.target.parentNode.parentNode.childNodes;
+				var all_lis = document.getElementsByTagName( "li" );
 				for (i = 0; i < all_lis.length; i++) {
-
-					if ( undefined != all_lis[ i ].classList ) {
+					if ( e.target.href == all_lis[ i ].childNodes[0].href ) {
+						all_lis[ i ].classList.add("current-menu-item");
+					} else {
 						all_lis[ i ].classList.remove("current-menu-item");
 					}
 
 				}
-
-				// Setting clicked item as active
-				e.target.parentNode.classList.add( "current-menu-item" );
 
 			}
 
@@ -92,20 +91,11 @@
 				hamburgerMenu.className = "";
 			}
 
-
 			// Process button clicks
 			if ( "mute" == e.target.id ) {
 				// Mute button
 
-				if ( "true" == localStorage.getItem( 'mute' ) ) {
-					localStorage.setItem( 'mute', false );
-					audioPlayer.volume = ( volumeValue.innerHTML / 100 );
-					e.target.className = "icon-button";
-				} else {
-					localStorage.setItem( 'mute', true );
-					audioPlayer.volume = 0;
-					e.target.className = "muted icon-button";
-				}
+				changeVolume( 0 );
 
 			} else if ( "play" == e.target.id ) {
 				// Play button

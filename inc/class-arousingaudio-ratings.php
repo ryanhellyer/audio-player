@@ -27,8 +27,8 @@ class ArousingAudio_Ratings {
 
 		$current_id = $wp_query->post->ID;
 
-		wp_localize_script( 'arousing-audio-init', 'thumbs_up', (string) $this->get_ratings( 'up', "both", $current_id ) );
-		wp_localize_script( 'arousing-audio-init', 'thumbs_down', (string) $this->get_ratings( 'down', "both", $current_id ) );
+		wp_localize_script( 'arousing-audio-init', 'thumbs_up', (string) arousingaudio_get_ratings( 'up', "both", $current_id ) );
+		wp_localize_script( 'arousing-audio-init', 'thumbs_down', (string) arousingaudio_get_ratings( 'down', "both", $current_id ) );
 
 	}
 
@@ -56,54 +56,23 @@ class ArousingAudio_Ratings {
 
 		echo '
 		<p>
-			Thumbs up logged out: ' . absint( $this->get_ratings( 'up', false ) ) . '
+			Thumbs up logged out: ' . absint( arousingaudio_get_ratings( 'up', false ) ) . '
 		</p>
 
 		<p>
-			Thumbs down logged out: ' . absint( $this->get_ratings( 'down', false ) ) . '
+			Thumbs down logged out: ' . absint( arousingaudio_get_ratings( 'down', false ) ) . '
 		</p>
 
 		<p>
-			Thumbs up logged in: ' . absint( $this->get_ratings( 'up', true ) ) . '
+			Thumbs up logged in: ' . absint( arousingaudio_get_ratings( 'up', true ) ) . '
 		</p>
 
 		<p>
-			Thumbs down logged in: ' . absint( $this->get_ratings( 'down', true ) ) . '
+			Thumbs down logged in: ' . absint( arousingaudio_get_ratings( 'down', true ) ) . '
 		</p>
 
 		<input type="hidden" id="ratings-nonce" name="ratings-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">';
 
-	}
-
-
-	public function get_ratings( $direction, $_logged_in = false, $id ) {
-
-		if ( 'up' == $direction ) {
-			$value = 1;
-		} else {
-			$value = 0;
-		}
-
-		$ratings = array();
-		if ( false == $_logged_in || "both" == $_logged_in ) {
-			$ratings = get_post_meta( $id, '_ratings', true );
-			if ( ! is_array( $ratings ) ) {
-				$ratings = array();
-			}
-		}
-
-		$ratings_logged_in = array();
-		if ( true == $_logged_in || "both" == $_logged_in ) {
-			$ratings_logged_in = get_post_meta( $id, '_ratings_logged_in', true );
-			if ( ! is_array( $ratings_logged_in ) ) {
-				$ratings_logged_in = array();
-			}
-		}
-
-		$ratings_count = array_merge( $ratings, $ratings_logged_in );
-		$rating_counts = array_count_values( $ratings_count );
-
-		return $rating_counts[ $value ];
 	}
 
 	public function process_rating() {

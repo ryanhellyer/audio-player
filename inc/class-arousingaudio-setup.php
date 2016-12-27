@@ -171,6 +171,8 @@ class ArousingAudio_Setup {
 			'globals',
 			'init',
 			'routing',
+//			'webrtc-adapter',
+//			'record',
 		);
 
 		foreach ( $scripts as $script ) {
