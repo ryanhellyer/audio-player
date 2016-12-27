@@ -16,7 +16,7 @@ if ( isset( $_GET[ 'json' ] ) ) {
 	die;
 }
 
-get_header(); 
+get_header();
 
 
 echo '

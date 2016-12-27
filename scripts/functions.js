@@ -61,7 +61,7 @@ function loadAudioFile( audioFile ) {
 
 	var fileLocation = audioFileDir + audioFile + ".mp3";
 
-	localStorage.setItem( 'current-audio', audioFile );
+	set_local_storage( 'current-audio', audioFile );
 
 	if ( audioPlayer.src != fileLocation ) {
 
@@ -130,4 +130,18 @@ function rating_ajax_request(rating) {
 
 	xhttp.open('POST', home_url+'?rating-'+rating+'='+audio_id, true);
 	xhttp.send();
+}
+
+/**
+ * Get local storage item.
+ */
+function get_local_storage( item ) {
+	return localStorage.getItem( item );
+}
+
+/**
+ * Set local storage item.
+ */
+function set_local_storage( item, value ) {
+	return localStorage.setItem( item, value );
 }

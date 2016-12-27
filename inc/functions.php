@@ -32,7 +32,7 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 
 			$audio_file_id = get_post_meta( get_the_ID(), '_audio_file_id', true );
 			$audio_file_meta = wp_get_attachment_metadata( $audio_file_id );
-			$slug = get_post_field( 'post_name', get_post() );
+			$slug = get_post_field( 'post_name' );
 
 			$audio_posts[ $slug ] = array(
 				'id'             => get_the_ID(),
@@ -41,6 +41,7 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 				'content'        => apply_filters( 'the_content', get_the_content() ),
 				'thumbs_up'      => arousingaudio_get_ratings( 'up', 'both', get_the_ID() ),
 				'thumbs_down'    => arousingaudio_get_ratings( 'down', 'both', get_the_ID() ),
+				'post_type'      => get_post_type( get_the_ID() ),
 
 				// May not be needed, just dumping here in case they're useful later
 				'length'         => (string) absint( $audio_file_meta[ 'length' ] ),
@@ -70,17 +71,24 @@ function arousingaudio_get_post( $id ) {
 		)
 	);
 
-//	$all_audio = arousingaudio_get_posts( $id );
-
-//	$data = array();
 	if ( $the_query->have_posts() ) {
 
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
 
-			$data[ 'slug' ]    = sanitize_title( get_post_field( 'post_name' ) );
-			$data[ 'title' ]   = esc_html( get_the_title() );
-			$data[ 'content' ] = apply_filters( 'the_content', get_the_content() );
+			$data[ 'slug' ]        = sanitize_title( get_post_field( 'post_name' ) );
+			$data[ 'title' ]       = esc_html( get_the_title() );
+			$data[ 'content' ]     = apply_filters( 'the_content', get_the_content() );
+
+			$data[ 'thumbs_up' ]   = arousingaudio_get_ratings( 'up', 'both', get_the_ID() );
+			$data[ 'thumbs_down' ] = arousingaudio_get_ratings( 'down', 'both', get_the_ID() );
+			$data[ 'post_type' ]   = get_post_type( get_the_ID() );
+
+			// May not be needed, just dumping here in case they're useful later
+			$data[ 'length' ]         = (string) absint( $audio_file_meta[ 'length' ] );
+			$data[ 'sample_rate' ]    = (string) absint( $audio_file_meta[ 'sample_rate' ] );
+			$data[ 'audio_channels' ] = (string) absint( $audio_file_meta[ 'channels' ] );
+
 			if ( 'audio' == get_post_type() ) {
 				$data[ 'audio' ] = true;
 			}

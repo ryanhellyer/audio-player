@@ -8,7 +8,7 @@
 		function (){
 
 			// Loop through and find current posts audio file to use (use stored one if on non-audio page)
-			audioFile = localStorage.getItem( 'current-audio' );
+			audioFile = get_local_storage( 'current-audio' );
 			for ( slug in audio_posts ) {
 
 				if ( page_id == audio_posts[ slug ][ 'id' ] ) {
@@ -22,18 +22,18 @@
 			durationTime.innerHTML = Math.floor( audioPlayer.duration * 10 ) / 10;
 
 			// Set audio player volume
-			var volume = localStorage.getItem( 'volume' );
+			var volume = get_local_storage( 'audio_volume' );
 			changeVolume( volume );
 
-			// Set mute button class
-			if ( 0 == volume ) {
-				mute.className = "muted icon-button";
+			// Only show equalizer on audio posts (but need to keep in place, to avoid it glitching on switching pages)
+			if ( "audio" == post_type ) {
+				canvas.style.display = "block";
 			} else {
-				mute.className = "icon-button";
+				canvas.style.display = "none";
 			}
 
 			// Set repeat button
-			if ( "true" == localStorage.getItem( 'repeat' ) ) {
+			if ( "true" == get_local_storage( 'repeat' ) ) {
 				audioPlayer.loop = true;
 				repeatButton.className = "active icon-button";
 			} else {
@@ -123,11 +123,11 @@
 				if ( true == audioPlayer.loop ) {
 					audioPlayer.loop = false;
 					repeatButton.className = "icon-button";
-					localStorage.setItem( 'repeat', false );
+					set_local_storage( 'repeat', false );
 				} else {
 					audioPlayer.loop = true;
 					repeatButton.className = "active icon-button";
-					localStorage.setItem( 'repeat', true );
+					set_local_storage( 'repeat', true );
 				}
 
 			} else if ( "previous" == e.target.id ) {
@@ -140,9 +140,9 @@
 
 										// Change to the other file
 										if (
-											"song" == localStorage.getItem( 'current-audio' )
+											"song" == get_local_storage( 'current-audio' )
 											||
-											null == localStorage.getItem( 'current-audio' )
+											null == get_local_storage( 'current-audio' )
 										) {
 											var audioFile = "song2";
 										} else {
@@ -156,9 +156,9 @@
 
 										// Change to the other file
 										if (
-											"song" == localStorage.getItem( 'current-audio' )
+											"song" == get_local_storage( 'current-audio' )
 											||
-											null == localStorage.getItem( 'current-audio' )
+											null == get_local_storage( 'current-audio' )
 										) {
 											var audioFile = "song2";
 										} else {
@@ -215,7 +215,9 @@
 		function() {
 
 			// Save volume to local database
-			localStorage.setItem( 'volume', volumeValue.innerHTML );
+			if ( volumeValue.innerHTML != get_local_storage( 'audio_volume' ) ) {
+				set_local_storage( 'audio_volume', volumeValue.innerHTML );
+			}
 
 		},
 		1000 * 1

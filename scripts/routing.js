@@ -106,6 +106,12 @@
 							comments.innerHTML = "";
 						}
 
+						if ( "audio" == response.post_type ) {
+							canvas.style.display = "block";
+						} else {
+							canvas.style.display = "none";
+						}
+
 						// Load new audio file into player
 						if ( undefined != response[ 'audio' ] && undefined != response[ 'audio' ] ) {
 							loadAudioFile( response[ 'slug' ] );
