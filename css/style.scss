@@ -457,7 +457,7 @@ td.icon-button span {
 		content: "\ea2d";
 	}
 
-	&.current-menu-item:before {
+	&.active:before {
 		color: $red;
 	}
 

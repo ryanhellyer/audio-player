@@ -7,6 +7,7 @@ var audioFileDir     = window.location.origin + "/audio/";
 // Audio player
 var audioPlayer      = document.getElementById( "audio-player" );
 var volumeValue      = document.getElementById("volume-value");
+var play             = document.getElementById("play");
 var durationTime     = document.getElementById( "duration-time" );
 var currentTime      = document.getElementById( "current-time" );
 var timeControl      = document.getElementById( "time-stamp" );
