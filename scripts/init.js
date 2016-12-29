@@ -149,7 +149,45 @@
 
 					// Find previous audio file
 
-console.log( audioFile);
+					var grab_next_iteration = false;
+
+					var i = 0;
+					for ( i = audio_posts.length - 1; i >= 0; i--) {
+
+						var slug = audio_posts[ i ][ "slug" ];
+
+						// Yuss! Previous file was found
+						if ( true == grab_next_iteration ) {
+							audioFile = slug;
+							loadAudioFile( audioFile, false );
+							grab_next_iteration = false;
+							break;
+						}
+
+						// This is our current post, so lets grab the one after it
+						if ( audioFile == slug ) {
+							grab_next_iteration = true;
+						}
+
+					}
+
+					// We overshot (must have been at end of list), so need to start from beginning again
+					if ( true == grab_next_iteration ) {
+
+						i = 0;
+						for ( i = audio_posts.length - 1; i >= 0; i--) {
+
+							var slug = audio_posts[ i ][ "slug" ];
+
+							audioFile = slug;
+							loadAudioFile( audioFile, false );
+							grab_next_iteration = false;
+							break;
+
+						}
+
+					}
+
 				}
 			} else if ( "next" == e.target.id ) {
 				// Next button
