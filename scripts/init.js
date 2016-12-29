@@ -17,6 +17,23 @@
 
 			}
 
+			// Arbitrarily grab a default audio file if none exists yet (normal when visiting a non audio page withhout ever visiting an audio page)
+			if ( null == audioFile ) {
+
+				for ( var slug in audio_posts ) {
+
+					// Set player to paused, since they didn't actually ask to play anything yet and are not on a specific audio page
+					audioPlayer.pause();
+					e.target.className = "paused icon-button";
+
+					// Grab the first audio file we can find, then bail out of the loop
+					audioFile = slug;
+					break;
+
+				}
+
+			}
+
 			loadAudioFile( audioFile );
 
 			durationTime.innerHTML = Math.floor( audioPlayer.duration * 10 ) / 10;
