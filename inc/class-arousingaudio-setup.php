@@ -156,7 +156,13 @@ class ArousingAudio_Setup {
 		wp_localize_script( 'arousing-audio-init', 'page_id', (string) absint( $wp_query->post->ID ) );
 		wp_localize_script( 'arousing-audio-init', 'home_url', esc_url( home_url( ) ) );
 		wp_localize_script( 'arousing-audio-init', 'audio_slug', 'audio' );
-		wp_localize_script( 'arousing-audio-init', 'post_type', (string) get_post_type( $wp_query->post->ID ) );
+
+		if ( is_singular() ) {
+			$post_type = (string) get_post_type( $wp_query->post->ID );
+		} else {
+			$post_type = 'non-singular';
+		}
+		wp_localize_script( 'arousing-audio-init', 'post_type', $post_type );
 
 	}
 

@@ -34,6 +34,15 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 			$audio_file_meta = wp_get_attachment_metadata( $audio_file_id );
 			$slug = get_post_field( 'post_name' );
 
+			$terms = wp_get_post_terms( get_the_ID(), 'genre' );
+			$posts_terms = array();
+			foreach ( $terms as $key => $term ) {
+				$posts_terms[] = array(
+					'name' => esc_html( $term->name ),
+					'slug' => esc_html( $term->slug ),
+				);
+			}
+
 			$audio_posts[ $slug ] = array(
 				'id'             => get_the_ID(),
 				'title'          => get_the_title(),
@@ -42,12 +51,17 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 				'thumbs_up'      => arousingaudio_get_ratings( 'up', 'both', get_the_ID() ),
 				'thumbs_down'    => arousingaudio_get_ratings( 'down', 'both', get_the_ID() ),
 				'post_type'      => get_post_type( get_the_ID() ),
+				'genre-terms'    => $posts_terms,
 
 				// May not be needed, just dumping here in case they're useful later
 				'length'         => (string) absint( $audio_file_meta[ 'length' ] ),
 				'sample_rate'    => (string) absint( $audio_file_meta[ 'sample_rate' ] ),
 				'audio_channels' => (string) absint( $audio_file_meta[ 'channels' ] ),
 			);
+
+$audio_posts[ $slug ]['title'] =  substr( 'Title ' . md5( get_the_ID() ) ,0,10 );
+$audio_posts[ $slug ]['excerpt'] = 'Excerpt '. substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 );
+$audio_posts[ $slug ]['content'] = 'Content ' . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'];
 
 		}
 	}
@@ -77,8 +91,12 @@ function arousingaudio_get_post( $id ) {
 			$the_query->the_post();
 
 			$data[ 'slug' ]        = sanitize_title( get_post_field( 'post_name' ) );
-			$data[ 'title' ]       = esc_html( get_the_title() );
-			$data[ 'content' ]     = apply_filters( 'the_content', get_the_content() );
+			$data[ 'title' ]       = 'Title ' . md5( get_the_ID() );//esc_html( get_the_title() );
+			$data[ 'content' ]     = 'Content ' . md5( get_the_ID() );//apply_filters( 'the_content', get_the_content() );
+
+$data['title'] =  substr( 'Title ' . md5( get_the_ID() ) ,0,10 );
+$bla = substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 );
+$data['content'] = 'Content ' . $bla .$bla.$bla .$bla;
 
 			$data[ 'thumbs_up' ]   = arousingaudio_get_ratings( 'up', 'both', get_the_ID() );
 			$data[ 'thumbs_down' ] = arousingaudio_get_ratings( 'down', 'both', get_the_ID() );

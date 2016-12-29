@@ -360,6 +360,7 @@ header {
 
 /* =Document list
 -------------------------------------------------------------- */
+
 #documents {
 	margin: 10rem 0;
 	width: 100%;
@@ -367,39 +368,40 @@ header {
 	-webkit-column-count: 3;
 	-moz-column-count: 3;
 	column-count: 3;
-}
 
-#documents li {
+	li {
 		-webkit-column-break-inside: avoid;
 		page-break-inside: avoid;
 		break-inside: avoid-column;
 		display:table; /* Handles column breaking in FF 20+ */
 
-	list-style: none;
-	margin: 0 0 1em 0;
-	font-size: 0.9em;
-	font-family: 'Open Sans', sans-serif;
-	font-weight: normal;
-	line-height: 1.3rem;
-}
+		list-style: none;
+		margin: 0 0 1em 0;
+		font-size: 0.9em;
+		font-family: 'Open Sans', sans-serif;
+		font-weight: normal;
+		line-height: 1.3rem;
 
-#documents li strong {
-	display: block;
-	font-size: 1.2em;
-	font-weight: bold;
-	margin-bottom: 0.5em;
-}
+		strong {
+			display: block;
+			font-size: 1.2em;
+			font-weight: bold;
+			margin-bottom: 0.5em;
+		}
 
-#documents li a {
-	width: 80%;
-	display: block;
-	color: #000;
-	padding: 0.5rem 0;
-}
+		a {
+			width: 80%;
+			display: block;
+			color: #000;
+			padding: 0.5rem 0;
 
-#documents li a:hover {
-	color: $red;
-	text-decoration: none
+			&:hover {
+				color: $red;
+				text-decoration: none
+			}
+
+		}
+	}
 }
 
 /* =Audio controls
@@ -415,6 +417,10 @@ header {
 
 .icon-button span {
 	display: none;
+}
+
+td.icon-button span {
+	display: inline-block;
 }
 
 .icon-button span.value {
@@ -901,17 +907,97 @@ table {
 	border-bottom: 1px solid #ededed;
 	border-collapse: collapse;
 	border-spacing: 0;
-	font-size: 0.8rem;
-	line-height: 1.7rem;
-	margin: 2rem 0;
+
+	margin: 5rem 0;
 	width: 100%;
+	list-style: none;
+}
+
+tr {
+
+	margin: 0 0 1rem 0;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: normal;
+	line-height: 1.3rem;
+	text-align: center;
+
+	&:nth-child(even) {
+		background: #e9e9e9;
+	}
+
+	&:hover {
+
+		background: $red;
+		cursor: pointer;
+
+		td a,
+		td a:visited,
+		td a:hover,
+		td {
+			color: #fff;
+		}		
+
+	}
+
+	&:nth-child(1) {
+		cursor: default;
+	}
+
+	&:hover:nth-child(1) {
+		background: none;
+	}
 }
 
 caption,
 th,
 td {
+
+	padding: 2rem 2rem;
 	font-weight: normal;
-	text-align: left;
+	font-size: 1rem;
+
+	&:nth-child(1) {
+		text-align: left;
+	}
+
+	.thumbs-up:before,
+	.thumbs-down:before {
+		font-family: Icons;
+		visibility: visible;
+	}
+
+	.thumbs-up:before {
+		content: "\e902";
+	}
+
+	.thumbs-down:before {
+		content: "\e900";
+	}
+
+	&:nth-child(4) {
+		white-space: nowrap
+	}
+
+	a {
+		color: #000;
+
+		strong {
+			font-size: 1.3rem;
+			margin-bottom: 1rem;
+			display: block;
+		}
+
+		&:visited {
+			color: #000;
+		}
+
+		&:hover {
+			color: #000;
+			text-decoration: none
+		}
+
+	}
+
 }
 
 caption {
@@ -920,13 +1006,13 @@ caption {
 }
 
 th {
-	font-weight: bold;
-	text-transform: uppercase;
+	padding: 0 2rem;
+	font-weight: normal;
+	font-size: 1rem;
 }
 
 td {
 	border-top: 1px solid #ededed;
-	padding: 1rem 1rem 1rem 0;
 }
 
 /* =Comments

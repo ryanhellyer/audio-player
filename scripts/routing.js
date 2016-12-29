@@ -47,12 +47,33 @@
 		'click',
 		function ( e ){
 
-			if ( undefined != e.target.parentNode.href ) {
+			// Get clicked URL
+			if (
+				undefined != e.target.parentNode.parentNode
+				&&
+				undefined != e.target.parentNode.parentNode.href
+			) {
+				var linked_url = e.target.parentNode.parentNode.href;
+			} else if ( undefined != e.target.parentNode.href ) {
 				var linked_url = e.target.parentNode.href;
 			} else if ( undefined != e.target.href ) {
 				var linked_url = e.target.href;
 			}
 
+			// If clicking on TR pseudo link
+			if (
+				undefined != e.target.parentNode.attributes
+				&&
+				undefined != e.target.parentNode.attributes[0]
+				&&
+				undefined != e.target.parentNode.attributes[0].name
+				&&
+				"data-href" == e.target.parentNode.attributes[0].name
+			) {
+				var linked_url = e.target.parentNode.attributes[0].value;
+			}
+
+			// If URL has been clicked, then do something
 			if ( undefined != linked_url ) {
 
 				// Set URL in browser address bar
@@ -72,8 +93,9 @@
 	setInterval(
 		function() {
 
-			// Only do something if URL path has changed
+			// Only do something if URL path has changed (need to check that stored_pathname exists first, as setInterval often fires before window is loaded)
 			if ( stored_pathname != location.pathname ) {
+
 				stored_pathname = location.pathname;
 
 				var json_url = add_query_var_to_uri( location.href, "json", "true" )

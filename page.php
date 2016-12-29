@@ -18,20 +18,6 @@ if ( isset( $_GET[ 'json' ] ) ) {
 
 get_header();
 
-
-echo '
-
-	<h1 id="title">' . esc_html( $data[ 'title' ] ) . '</h1>
-
-	<div id="content">' . $data[ 'content' ] . '</div>
-
-	<!-- Audio visualiser -->
-	<canvas id="canvas" width="800" height="350"></canvas>
-
-	<!-- Wrapper for comments -->
-	<div id="comments">' . $data[ 'comments' ] . '</div>
-
-';
-
+require( 'template-parts/content.php' );
 
 get_footer();
