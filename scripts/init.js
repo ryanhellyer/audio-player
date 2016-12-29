@@ -9,25 +9,17 @@
 
 			// Loop through and find current posts audio file to use (use stored one if on non-audio page)
 			audioFile = get_local_storage( 'current-audio' );
-			for ( slug in audio_posts ) {
 
-				if ( page_id == audio_posts[ slug ][ 'id' ] ) {
-					audioFile = slug;
+			var i = 0;
+			for ( i = 0; i < audio_posts.length; i++) {
+				if ( page_id == audio_posts[ i ][ 'id' ] ) {
+					audioFile = audio_posts[ i ][ 'slug' ];
 				}
-
 			}
 
 			// Arbitrarily grab a default audio file if none exists yet (normal when visiting a non audio page withhout ever visiting an audio page)
 			if ( null == audioFile ) {
-
-				for ( var slug in audio_posts ) {
-
-					// Grab the first audio file we can find, then bail out of the loop
-					audioFile = slug;
-					break;
-
-				}
-
+				audioFile = audio_posts[ 0 ][ 'slug '];
 			}
 
 			// Set player to paused if they didn't actually ask to play anything specifically
@@ -156,9 +148,19 @@
 				} else {
 
 					// Find previous audio file
-/*
+
+console.log( audioFile);
+				}
+			} else if ( "next" == e.target.id ) {
+				// Next button
+
+				// Find next audio file
 					var grab_next_iteration = '';
-					for ( slug in audio_posts ) {
+
+					var i = 0;
+					for ( i = 0; i < audio_posts.length; i++) {
+
+						var slug = audio_posts[ i ][ "slug" ];
 
 						// Yuss! Next file was found
 						if ( true == grab_next_iteration ) {
@@ -178,49 +180,20 @@
 					// We overshot (must have been at end of list), so need to start from beginning again
 					if ( true == grab_next_iteration ) {
 
-						for ( slug in audio_posts ) {
+
+						i = 0;
+						for ( i = 0; i < audio_posts.length; i++) {
+
+							var slug = audio_posts[ i ][ "slug" ];
+
 							audioFile = slug;
 							loadAudioFile( audioFile, false );
 							grab_next_iteration = false;
 							break;
+
 						}
 
 					}
-*/
-				}
-			} else if ( "next" == e.target.id ) {
-				// Next button
-
-				// Find next audio file
-				var grab_next_iteration = '';
-				for ( slug in audio_posts ) {
-
-					// Yuss! Next file was found
-					if ( true == grab_next_iteration ) {
-						audioFile = slug;
-						loadAudioFile( audioFile, false );
-						grab_next_iteration = false;
-						break;
-					}
-
-					// This is our current post, so lets grab the one after it
-					if ( audioFile == slug ) {
-						grab_next_iteration = true;
-					}
-
-				}
-
-				// We overshot (must have been at end of list), so need to start from beginning again
-				if ( true == grab_next_iteration ) {
-
-					for ( slug in audio_posts ) {
-						audioFile = slug;
-						loadAudioFile( audioFile, false );
-						grab_next_iteration = false;
-						break;
-					}
-
-				}
 
 			} else if ( "thumbs-up" == e.target.id ) {
 				// Thumbs up button

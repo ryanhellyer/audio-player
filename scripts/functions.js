@@ -52,6 +52,15 @@ function changePlayerTimeStamp( percentage_complete, callback = true ) {
 
 }
 
+function getAudioData( slug, item ) {
+	var i = 0;
+	for ( i = 0; i < audio_posts.length; i++) {
+		if ( slug == audio_posts[ i ][ 'slug' ] ) {
+			return audio_posts[ i ][ item ];
+		}
+	}
+}
+
 /**
  * Load an audio file.
  *
@@ -84,16 +93,16 @@ function loadAudioFile( audioFile, pause = false ) {
 			trackDescription.href = home_url + "/" + audioFile;
 
 			if ( "H2" == trackDescription.childNodes[i][ 'tagName' ] ) {
-				trackDescription.childNodes[i].innerHTML = audio_posts[ audioFile ][ 'title' ];
+				trackDescription.childNodes[i].innerHTML = getAudioData( audioFile, 'title' );
 			} else if ( "P" == trackDescription.childNodes[i][ 'tagName' ] ) {
-				trackDescription.childNodes[i].innerHTML = audio_posts[ audioFile ][ 'excerpt' ];
+				trackDescription.childNodes[i].innerHTML = getAudioData( audioFile, 'excerpt' );
 			}
 
 		}
 
 		// Set ratings
-		thumbsUp.innerHTML = thumbs_up = audio_posts[ audioFile ][ 'thumbs_up' ];
-		thumbsDown.innerHTML = thumbs_down = audio_posts[ audioFile ][ 'thumbs_down' ];
+		thumbsUp.innerHTML = thumbs_up = getAudioData( audioFile, 'thumbs_up' );
+		thumbsDown.innerHTML = thumbs_down = getAudioData( audioFile, 'thumbs_down' );
 
 	}
 
@@ -127,10 +136,13 @@ function rating_ajax_request(rating) {
 	};
 
 	// Get current audio ID
-	for ( slug in audio_posts ) {
+
+	var i = 0;
+	for ( i = 0; i < audio_posts.length; i++) {
+		slug = audio_posts[ i ][ 'slug' ];
 
 		if ( audioPlayer.src == audioFileDir + slug + ".mp3" ) {
-			var audio_id = audio_posts[ slug ][ 'id' ];
+			var audio_id = audio_posts[ i ][ 'id' ];
 		}
 
 	}

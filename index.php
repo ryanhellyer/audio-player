@@ -17,7 +17,8 @@ $content = '
 				</tr>';
 
 $continue = true;
-foreach ( arousingaudio_get_posts() as $slug => $post ) {
+foreach ( arousingaudio_get_posts() as $key => $post ) {
+	$slug = $post[ 'slug' ];
 
 	// Filter based on taxonomy
 	if ( is_tax( 'genre' ) ) {

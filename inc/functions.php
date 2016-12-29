@@ -43,11 +43,22 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 				);
 			}
 
-			$audio_posts[ $slug ] = array(
+			if ( defined( 'TEST' ) ) {
+				$title =  substr( 'Title ' . md5( get_the_ID() ) ,0,10 );
+				$excerpt = 'Excerpt '. substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 );
+				$content = 'Content ' . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'];
+			} else {
+				$title   = get_the_title();
+				$excerpt = get_the_excerpt();
+				$content = apply_filters( 'the_content', get_the_content() );
+			}
+
+			$audio_posts[] = array(
 				'id'             => get_the_ID(),
-				'title'          => get_the_title(),
-				'excerpt'        => get_the_excerpt(),
-				'content'        => apply_filters( 'the_content', get_the_content() ),
+				'slug'           => $slug,
+				'title'          => $title,
+				'excerpt'        => $excerpt,
+				'content'        => $content,
 				'thumbs_up'      => arousingaudio_get_ratings( 'up', 'both', get_the_ID() ),
 				'thumbs_down'    => arousingaudio_get_ratings( 'down', 'both', get_the_ID() ),
 				'post_type'      => get_post_type( get_the_ID() ),
@@ -58,10 +69,6 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 				'sample_rate'    => (string) absint( $audio_file_meta[ 'sample_rate' ] ),
 				'audio_channels' => (string) absint( $audio_file_meta[ 'channels' ] ),
 			);
-
-$audio_posts[ $slug ]['title'] =  substr( 'Title ' . md5( get_the_ID() ) ,0,10 );
-$audio_posts[ $slug ]['excerpt'] = 'Excerpt '. substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 );
-$audio_posts[ $slug ]['content'] = 'Content ' . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'] . $audio_posts[ $slug ]['excerpt'];
 
 		}
 	}
@@ -122,7 +129,6 @@ $data['content'] = 'Content ' . $bla .$bla.$bla .$bla;
 			ob_end_clean();
 
 			$data[ 'comments' ] = $comments;
-
 
 	    }
 	}
