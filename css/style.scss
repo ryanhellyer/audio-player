@@ -164,6 +164,7 @@ header {
 
 #hamburger-menu {
 
+	z-index: 10;
 	background: #fff;
 	position: fixed;
 	top: 0;
@@ -495,7 +496,7 @@ td.icon-button span {
 /* Volume controls */
 
 #volume-wrapper {
-	z-index: 50;
+	z-index: 3;
 	float: right;
 	width: 25%;
 	margin: 1rem 2rem 0 0;

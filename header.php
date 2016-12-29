@@ -20,28 +20,29 @@
 
 <a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'arousingaudio' ); ?></a>
 
+<!-- Hamburger menu -->
+<div id="hamburger-menu">
+	<div class="hamburger"></div>
+
+	<div class="logo"><?php
+
+	// Output header text (need fallback to keep WordPress.org them demo happy)
+	$header_text = get_option( 'header-text' );
+	if ( $header_text ) {
+		echo ArousingAudio_Setup::sanitize( $header_text );
+	} else {
+		echo 'Hellish<span>Simplicity</span><small>.tld</small>';
+	}
+
+	?></div>
+
+	<?php wp_nav_menu( array( 'theme_location' => 'sidebar-menu' ) ); ?>
+
+</div>
+
 <header>
 
-	<!-- Hamburger menu -->
 	<div id="hamburger" class="hamburger"></div>
-	<div id="hamburger-menu">
-		<div class="hamburger"></div>
-
-		<div class="logo"><?php
-
-		// Output header text (need fallback to keep WordPress.org them demo happy)
-		$header_text = get_option( 'header-text' );
-		if ( $header_text ) {
-			echo ArousingAudio_Setup::sanitize( $header_text );
-		} else {
-			echo 'Hellish<span>Simplicity</span><small>.tld</small>';
-		}
-
-		?></div>
-
-		<?php wp_nav_menu( array( 'theme_location' => 'sidebar-menu' ) ); ?>
-
-	</div>
 
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 		<h1 class="logo"><?php
