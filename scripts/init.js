@@ -65,7 +65,17 @@
 		function ( e ){
 
 			// Handling current-menu-item classes
-			if ( "LI" == e.target.parentNode.tagName ) {
+			if (
+				"H1" === e.target.tagName // For the logo
+				||
+				"A" === e.target.tagName // Direct links
+				||
+				"TBODY" === e.target.parentNode.tagName // For clicked table rows
+				||
+				"TR" === e.target.parentNode.tagName // For clicked table rows
+				||
+				"TD" === e.target.parentNode.tagName // For clicked table rows
+			) {
 
 				// Remove all existing active items first
 				var all_lis = document.getElementsByTagName( "li" );
