@@ -57,7 +57,7 @@ function changePlayerTimeStamp( percentage_complete, callback = true ) {
  *
  * @param  string  audioFile  An audio file to load
  */
-function loadAudioFile( audioFile ) {
+function loadAudioFile( audioFile, pause = false ) {
 
 	var fileLocation = audioFileDir + audioFile + ".mp3";
 
@@ -68,7 +68,14 @@ function loadAudioFile( audioFile ) {
 		// Set audio player SRC
 		audioPlayer.pause(); // Need to pause it or we get errors on changing SRC
 		audioPlayer.setAttribute( 'src', fileLocation );
-		audioPlayer.play();
+
+		if ( true == pause ) {
+			audioPlayer.pause();
+			play.className = "paused icon-button";
+		} else {
+			audioPlayer.play();			
+			play.className = "icon-button";
+		}
 
 		// Set track description
 		for (i = 0; i < trackDescription.childNodes.length; i++) { 

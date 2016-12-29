@@ -3,6 +3,7 @@
  * These are set as globals to avoid rebuilding them continuously.
  */
 var audioFileDir     = window.location.origin + "/audio/";
+var audioFile;
 
 // Audio player
 var audioPlayer      = document.getElementById( "audio-player" );

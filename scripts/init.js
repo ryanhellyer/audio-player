@@ -22,10 +22,6 @@
 
 				for ( var slug in audio_posts ) {
 
-					// Set player to paused, since they didn't actually ask to play anything yet and are not on a specific audio page
-					audioPlayer.pause();
-					e.target.className = "paused icon-button";
-
 					// Grab the first audio file we can find, then bail out of the loop
 					audioFile = slug;
 					break;
@@ -34,7 +30,12 @@
 
 			}
 
-			loadAudioFile( audioFile );
+			// Set player to paused if they didn't actually ask to play anything specifically
+			if ( "audio" != post_type ) {
+				loadAudioFile( audioFile, true );
+			} else {
+				loadAudioFile( audioFile );
+			}
 
 			durationTime.innerHTML = Math.floor( audioPlayer.duration * 10 ) / 10;
 
@@ -154,35 +155,72 @@
 					audioPlayer.currentTime = 0;
 				} else {
 
+					// Find previous audio file
+/*
+					var grab_next_iteration = '';
+					for ( slug in audio_posts ) {
 
-										// Change to the other file
-										if (
-											"song" == get_local_storage( 'current-audio' )
-											||
-											null == get_local_storage( 'current-audio' )
-										) {
-											var audioFile = "song2";
-										} else {
-											var audioFile = "song";
-										}
-										loadAudioFile( audioFile );
+						// Yuss! Next file was found
+						if ( true == grab_next_iteration ) {
+							audioFile = slug;
+							loadAudioFile( audioFile, false );
+							grab_next_iteration = false;
+							break;
+						}
+
+						// This is our current post, so lets grab the one after it
+						if ( audioFile == slug ) {
+							grab_next_iteration = true;
+						}
+
+					}
+
+					// We overshot (must have been at end of list), so need to start from beginning again
+					if ( true == grab_next_iteration ) {
+
+						for ( slug in audio_posts ) {
+							audioFile = slug;
+							loadAudioFile( audioFile, false );
+							grab_next_iteration = false;
+							break;
+						}
+
+					}
+*/
 				}
 			} else if ( "next" == e.target.id ) {
 				// Next button
 
+				// Find next audio file
+				var grab_next_iteration = '';
+				for ( slug in audio_posts ) {
 
-										// Change to the other file
-										if (
-											"song" == get_local_storage( 'current-audio' )
-											||
-											null == get_local_storage( 'current-audio' )
-										) {
-											var audioFile = "song2";
-										} else {
-											var audioFile = "song";
-										}
-										loadAudioFile( audioFile );
+					// Yuss! Next file was found
+					if ( true == grab_next_iteration ) {
+						audioFile = slug;
+						loadAudioFile( audioFile, false );
+						grab_next_iteration = false;
+						break;
+					}
 
+					// This is our current post, so lets grab the one after it
+					if ( audioFile == slug ) {
+						grab_next_iteration = true;
+					}
+
+				}
+
+				// We overshot (must have been at end of list), so need to start from beginning again
+				if ( true == grab_next_iteration ) {
+
+					for ( slug in audio_posts ) {
+						audioFile = slug;
+						loadAudioFile( audioFile, false );
+						grab_next_iteration = false;
+						break;
+					}
+
+				}
 
 			} else if ( "thumbs-up" == e.target.id ) {
 				// Thumbs up button

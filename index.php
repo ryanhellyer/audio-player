@@ -8,13 +8,13 @@
 
 // Generate main page content string
 $content = '
-		<table>
-			<tr>
-				<th> </th>
-				<th>' . __( 'Genre', 'arousingaudio' ) . '</th>
-				<th>' . __( 'Duration', 'arousingaudio' ) . '</th>
-				<th>' . __( 'Rating', 'arousingaudio' ) . '</th>
-			</tr>';
+			<table>
+				<tr>
+					<th> </th>
+					<th>' . __( 'Genre', 'arousingaudio' ) . '</th>
+					<th>' . __( 'Duration', 'arousingaudio' ) . '</th>
+					<th>' . __( 'Rating', 'arousingaudio' ) . '</th>
+				</tr>';
 
 $continue = true;
 foreach ( arousingaudio_get_posts() as $slug => $post ) {
@@ -56,34 +56,34 @@ $term['name'] =  substr( md5( $term['name'] ) ,0,rand(4, 10 ) );
 		}
 
 		$content .= '
-			<tr data-href="' . esc_url( get_permalink( $post[ 'id' ] ) ) . '">
-				<td>
-					<a href="' . esc_url( get_permalink( $post[ 'id' ] ) ) . '">
-						<strong>' . esc_html( $post[ 'title' ] ) . '</strong>
-						' . esc_html( $post[ 'excerpt' ] ) . '
-					</a>
-				</td>
-				<td>
-					' . $terms . '
-				</td>
-				<td>
-					' . esc_html( $duration ) . '
-				</td>
-				<td>
-					<span class="thumbs-up"></span>
-					' . esc_html( $post[ 'thumbs_up' ] ) . '
-					 &nbsp; 
-					<span class="thumbs-down"></span>
-					' . esc_html( $post[ 'thumbs_down' ] ) . '
-				</td>
-			</li>';
-	}
+				<tr data-href="' . esc_url( get_permalink( $post[ 'id' ] ) ) . '">
+					<td>
+						<a href="' . esc_url( get_permalink( $post[ 'id' ] ) ) . '">
+							<strong>' . esc_html( $post[ 'title' ] ) . '</strong>
+							' . esc_html( $post[ 'excerpt' ] ) . '
+						</a>
+					</td>
+					<td>
+						' . $terms . '
+					</td>
+					<td>
+						' . esc_html( $duration ) . '
+					</td>
+					<td>
+						<span class="thumbs-up"></span>
+						' . esc_html( $post[ 'thumbs_up' ] ) . '
+						 &nbsp; 
+						<span class="thumbs-down"></span>
+						' . esc_html( $post[ 'thumbs_down' ] ) . '
+					</td>
+				</tr>';
+		}
 
 }
 
 $content .= '
-		</ul>
-';
+			</table>
+		';
 
 $data = array();
 $data[ 'title' ]   = get_bloginfo( 'title' );
