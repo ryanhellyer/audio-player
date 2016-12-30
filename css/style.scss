@@ -126,16 +126,6 @@ a:hover {
 
 /* =Header
 -------------------------------------------------------------- */
-header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	border-bottom: 1px solid #e9e9e9;
-	margin: 0 0 4rem 0;
-	background: #fff;
-	box-shadow: 0 0 5px rgba(0,0,0,0.3);
-}
 
 .hamburger {
 
@@ -288,6 +278,15 @@ li.legal-notice a:before {
 
 
 header {
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	border-bottom: 1px solid #e9e9e9;
+	margin: 0 0 4rem 0;
+	background: #fff;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3);
 
 	nav {
 
@@ -911,7 +910,6 @@ table {
 
 	margin: 5rem 0;
 	width: 100%;
-	list-style: none;
 }
 
 tr {
@@ -953,7 +951,7 @@ caption,
 th,
 td {
 
-	padding: 2rem 2rem;
+	padding: 2rem 5%;
 	font-weight: normal;
 	font-size: 1rem;
 
@@ -1141,31 +1139,6 @@ footer {
 
 @media only screen and (max-width: 900px) {
 
-	/* Switch to only display a hand */
-	#facebook-group {
-		position: absolute;
-		right: 0;
-		width: 60px;
-		background-position: 68px 0;
-	}
-
-	body.home #facebook-group {
-		width: 60px;
-		height: 60px;
-		background-position: 68px 0;
-		background-size: cover;
-	}
-
-	header h1 {
-		font-size: 30px;
-		margin: 15px 0;
-		line-height: 30px;
-	}
-
-	h1 {
-		font-size: 2.2rem;
-	}
-
 	p,
 	li,
 	dd,
@@ -1182,29 +1155,35 @@ footer {
 		width: 90%;
 	}
 
-	footer .alignright {
-		float: none;
-		margin: 0;
-	}
-
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 640px) {
 
-	/* Documents */
-	#documents {
-		-webkit-column-count: 2;
-		-moz-column-count: 2;
-		column-count: 2;
+	header {
+
+		nav {
+
+			ul {
+				width: 320px;
+				white-space: nowrap;
+				overflow-y: hidden;
+				overflow-x: scroll;
+				-webkit-overflow-scrolling: touch;
+			}
+
+			a {
+				padding: 0.6rem 0.6rem 0.8rem 0.6rem;
+				margin: 0 0.1rem 5px 0.1rem;
+			}
+
+		}
+
 	}
 
-	#documents li a {
-		width: 95%;
-	}
-
-	/* Search box */
-	#search-form {
-		width: 100%;
+	/* Audio player */
+	#volume-wrapper,
+	#track-information {
+		display: none;
 	}
 
 	/* Ratings - thumbs up/thumbs down */
@@ -1217,30 +1196,6 @@ footer {
 	#thumbs a {
 		position: static;
 		top: 0;
-	}
-
-}
-
-@media only screen and (max-width: 400px) {
-
-	/* Documents */
-	#documents {
-		-webkit-column-count: 1;
-		-moz-column-count: 1;
-		column-count: 1;
-	}
-
-	#documents li a {
-		width: 100%;
-	}
-
-}
-
-@media only screen and (max-width: 319px) {
-
-	header h1 {
-		font-size: 1.5rem;
-		padding-right: 60px
 	}
 
 }
