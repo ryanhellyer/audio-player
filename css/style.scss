@@ -1180,6 +1180,26 @@ footer {
 
 	}
 
+	th,
+	td {
+
+		&:nth-child(2),
+		&:nth-child(3) {
+			display: none;
+		}
+
+	}
+
+	#hamburger-menu {
+		overflow-x: hidden;
+		overflow-y: scroll;
+		white-space: nowrap;
+		-webkit-overflow-scrolling: touch;
+		/*
+		height: 360px !important;
+		*/
+	}
+
 	/* Audio player */
 	#volume-wrapper,
 	#track-information {

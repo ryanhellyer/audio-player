@@ -1,5 +1,7 @@
 (function () {
 
+	var layout_design;
+
 	/**
 	 * Set initial audio player settings.
 	 */
@@ -54,8 +56,26 @@
 			// Make footer visible - kept hidden to avoid things flashing whilst it's loading
 			var footer = document.getElementById( "footer" );
 			footer.style.visibility = "visible";
+
+			// Set layout
+			resize();
+
 		}
 	);
+
+	/**
+	 * Work out which design to use on resizing browser window.
+	 * The variable design_layout can be used elsewhere to determine which layout we are currently using.
+	 */
+	window.onresize = function(){resize();};
+	function resize() {
+		width = window.innerWidth || document.body.clientWidth;
+		if ( 600 > width ) {
+			design_layout = 'phone';
+		} else {
+			design_layout = 'desktop';
+		}
+	}
 
 	/**
 	 * Handle clicks.
@@ -109,6 +129,12 @@
 				hamburgerMenu.className = "open";
 			} else {
 				hamburgerMenu.className = "";
+			}
+
+			// Set side menu height (useful when scrolling on touch screen devices)
+			if ( "open" === hamburgerMenu.className ) {
+				height = window.innerHeight || document.body.clientHeight;
+				hamburgerMenu.style.height = height + "px";
 			}
 
 			// Process button clicks
