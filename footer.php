@@ -83,6 +83,11 @@
 			<span>Next</span>
 		</div>
 
+		<!-- Shuff button -->
+		<div id="shuffle-button" class="icon-button">
+			<span><?php _e( 'Shuffle', 'arousingaudio' ); ?></span>
+		</div>
+
 	</div>
 
 

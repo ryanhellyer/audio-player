@@ -463,6 +463,19 @@ td.icon-button span {
 
 }
 
+#shuffle-button {
+
+	&:before {
+		margin-left: 2rem;
+		content: "\ea30";
+	}
+
+	&.active:before {
+		color: $red;
+	}
+
+}
+
 #previous:before {
 	content: "\ea23";
 }

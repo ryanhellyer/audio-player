@@ -46,11 +46,26 @@
 
 			// Set repeat button
 			if ( "true" == get_local_storage( 'repeat' ) ) {
-				audioPlayer.loop = true;
+
+				// Only repeat single file if not shuffling through entire playlist
+				if ( "false" != get_local_storage( 'shuffle' ) ) {
+					// do nothing
+				} else {
+					audioPlayer.loop = true;
+				}
+
 				repeatButton.className = "active icon-button";
 			} else {
 				audioPlayer.loop = false;
 				repeatButton.className = "icon-button";
+			}
+
+			// Set shuffle button
+			if ( "true" === get_local_storage( 'shuffle' ) ) {
+				audioPlayer.loop = false;
+				shuffleButton.className = "active icon-button";
+			} else {
+				shuffleButton.className = "icon-button";
 			}
 
 			// Make footer visible - kept hidden to avoid things flashing whilst it's loading
@@ -161,6 +176,31 @@
 					hamburgerMenu.className = "open";
 				} else {
 					hamburgerMenu.className = "";
+				}
+
+			} else if ( "shuffle-button" == e.target.id ) {
+				// Shuffle button
+
+				if ( "true" === get_local_storage( 'shuffle' ) ) {
+
+					shuffleButton.className = "icon-button";
+					set_local_storage( 'shuffle', false );
+
+					// Since repeat is on, but no shuffle, it should start repeating the same file over and over again
+					if ( "true" == get_local_storage( 'repeat' ) ) {
+						audioPlayer.loop = true;
+					}
+
+				} else {
+
+					audioPlayer.loop = false;
+
+					shuffleButton.className = "active icon-button";
+					set_local_storage( 'shuffle', true );
+
+					// Shuffle whole playlist
+					shufflePosts();
+
 				}
 
 			} else if ( "repeat-button" == e.target.id ) {
@@ -316,6 +356,56 @@
 	setInterval(
 		function() {
 
+
+			// Shuffle to next file
+			if ( true == audioPlayer.ended && "false" != get_local_storage( 'shuffle' ) ) {
+
+				// Grab next audio file
+				var grab_next_iteration = '';
+
+				var i = 0;
+				for ( i = 0; i < audio_posts.length; i++) {
+
+					var slug = audio_posts[ i ][ "slug" ];
+
+					// Yuss! Next file was found
+					if ( true == grab_next_iteration ) {
+						audioFile = slug;
+						loadAudioFile( audioFile, false );
+						grab_next_iteration = false;
+						break;
+					}
+
+					// This is our current post, so lets grab the one after it
+					if ( audioFile == slug ) {
+						grab_next_iteration = true;
+					}
+
+				}
+
+				// We are at the end of the play list, so only continue if repeat is still on
+				if ( true == grab_next_iteration && "true" == get_local_storage( 'repeat' ) ) {
+
+					i = 0;
+					for ( i = 0; i < audio_posts.length; i++) {
+
+						var slug = audio_posts[ i ][ "slug" ];
+
+						audioFile = slug;
+						loadAudioFile( audioFile, false );
+						grab_next_iteration = false;
+						break;
+
+					}
+
+				}
+
+
+
+
+
+			}
+
 			// Save volume to local database
 			if ( volumeValue.innerHTML != get_local_storage( 'audio_volume' ) ) {
 				set_local_storage( 'audio_volume', volumeValue.innerHTML );
@@ -324,6 +414,18 @@
 		},
 		1000 * 1
 	);
+
+	/**
+	 * Shuffles array in place. ES6 version.
+	 * Adapted from http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript
+	 */
+	function shufflePosts() {
+		for (let i = audio_posts.length; i; i--) {
+			let j = Math.floor(Math.random() * i);
+			[audio_posts[i - 1], audio_posts[j]] = [audio_posts[j], audio_posts[i - 1]];
+		}
+
+	}
 
 	/**
 	 * Create sliders.
