@@ -21,8 +21,9 @@ var trackDescription = document.getElementById( "track-description" );
 var thumbsDown       = document.getElementById( "thumbs-down-value" );
 var thumbsUp         = document.getElementById( "thumbs-up-value" );
 
-// Menu
+// Menus
 var hamburgerMenu    = document.getElementById( "hamburger-menu" );
+var headerNav        = document.getElementById( "header-nav" );
 
 // Main content
 var main             = document.getElementById( "main" );

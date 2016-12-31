@@ -58,7 +58,7 @@
 		?></h1>
 	</a>
 
-	<nav>
+	<nav id="header-nav">
 		<?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
 <!--
 		<form>

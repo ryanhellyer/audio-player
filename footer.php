@@ -29,6 +29,8 @@
 			<p></p>
 		</a>
 
+	</div>
+
 		<!-- Ratings -->
 		<div id="ratings">
 
@@ -43,8 +45,6 @@
 			</div>
 
 		</div>
-
-	</div>
 
 
 	<!-- Volume controls -->

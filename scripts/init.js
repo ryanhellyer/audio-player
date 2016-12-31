@@ -85,11 +85,14 @@
 	window.onresize = function(){resize();};
 	function resize() {
 		width = window.innerWidth || document.body.clientWidth;
-		if ( 600 > width ) {
-			design_layout = 'phone';
-		} else {
-			design_layout = 'desktop';
+
+		// Setting width on header menu to allow horizontal scrolling on touch devices
+		if ( 760 > width ) {
+			var uls = headerNav.getElementsByTagName( "UL" );
+			ul = uls[0];
+			ul.style.width = width + "px";
 		}
+
 	}
 
 	/**

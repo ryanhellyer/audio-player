@@ -564,15 +564,14 @@ td.icon-button span {
 /* Track information */
 #track-information {
 	float: left;
-	width: 25%;
-	margin: 0.1rem 0 0 2rem;
+	width: 15%;
+	margin: 0.1rem 0 0 2%;
 	text-align: left;
 }
 
 #track-description {
 	float: left;
 	display: none;
-	width: 70%;
 
 	&:hover h2,
 	&:hover p {
@@ -607,8 +606,8 @@ td.icon-button span {
 
 #ratings {
 	float: left;
-	width: 20%;
-	margin: 1rem 0 0 10%;
+	width: auto;
+	margin: 1rem 0 0 2%;
 
 	div {
 		width: 50%;
@@ -1150,31 +1149,13 @@ footer {
 /* =Small browser widths
 -------------------------------------------------------------- */
 
-@media only screen and (max-width: 900px) {
-
-	p,
-	li,
-	dd,
-	dt,
-	caption,
-	th,
-	td {
-		font-size: 0.9rem;
-	}
-
-	textarea,
-	input {
-		padding: 1rem 5%;
-		width: 90%;
-	}
-
-}
-
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 760px) {
 
 	header {
 
 		nav {
+
+			margin-right: 0;
 
 			ul {
 				width: 320px;
@@ -1220,15 +1201,31 @@ footer {
 	}
 
 	/* Ratings - thumbs up/thumbs down */
-	#thumbs span {
-		clear: both;
-		display: block;
-		margin-bottom: 4rem;
+	#thumbs-up,
+	#thumbs-down {
+		position: fixed;
+		bottom: 1rem;
+		font-size: 3rem;
 	}
 
-	#thumbs a {
-		position: static;
-		top: 0;
+	#thumbs-up {
+		left: -10%;
+	}
+
+	#thumbs-down {
+		right: -10%;
+	}
+
+}
+
+@media only screen and (max-width: 540px) {
+
+	/* Ratings - thumbs up/thumbs down */
+	#thumbs-up,
+	#thumbs-down {
+		position: fixed;
+		bottom: 7.5rem;
+		font-size: 3rem;
 	}
 
 }
