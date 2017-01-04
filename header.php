@@ -96,4 +96,3 @@
 </header>
 
 <div class="wrapper" id="main">
-	<article>

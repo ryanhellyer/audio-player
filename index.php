@@ -7,14 +7,7 @@
  */
 
 // Generate main page content string
-$content = '
-			<table>
-				<tr>
-					<th> </th>
-					<th>' . __( 'Genre', 'arousingaudio' ) . '</th>
-					<th>' . __( 'Duration', 'arousingaudio' ) . '</th>
-					<th>' . __( 'Rating', 'arousingaudio' ) . '</th>
-				</tr>';
+$content = '';
 
 $continue = true;
 foreach ( arousingaudio_get_posts() as $key => $post ) {
@@ -42,52 +35,27 @@ foreach ( arousingaudio_get_posts() as $key => $post ) {
 		$duration_left_seconds = $duration_in_seconds - ( $duration_whole_minutes * 60 );
 		$duration = $duration_whole_minutes . ':' .$duration_left_seconds;
 
-		// Create term list
-		$terms = '';
-		foreach ( $post[ 'genre-terms' ] as $key => $term ) {
-
-			if ( '' != $terms ) {
-				$terms .= ', ';
-			}
-
-$term['name'] =  substr( md5( $term['name'] ) ,0,rand(4, 10 ) );
-
-			$terms .= '<a href="' . esc_url( home_url() . '/genre/' . $term[ 'slug' ] ) . '/">' . esc_html( $term[ 'name' ] ) . '</a>';
-
+		$term_slug = '';
+		if ( isset( $post[ 'genre-terms' ][ 0 ][ 'slug' ] ) ) {
+			$term_slug = ' ' . $post[ 'genre-terms' ][ 0 ][ 'slug' ];
 		}
 
 		$content .= '
-				<tr data-href="' . esc_url( get_permalink( $post[ 'id' ] ) ) . '">
-					<td>
-						<a href="' . esc_url( get_permalink( $post[ 'id' ] ) ) . '">
-							<strong>' . esc_html( $post[ 'title' ] ) . '</strong>
-							' . esc_html( $post[ 'excerpt' ] ) . '
-						</a>
-					</td>
-					<td>
-						' . $terms . '
-					</td>
-					<td>
-						' . esc_html( $duration ) . '
-					</td>
-					<td>
-						<span class="thumbs-up"></span>
-						' . esc_html( $post[ 'thumbs_up' ] ) . '
-						 &nbsp; 
-						<span class="thumbs-down"></span>
-						' . esc_html( $post[ 'thumbs_down' ] ) . '
-					</td>
-				</tr>';
-		}
+				<a class="' . esc_attr( 'box' . $term_slug ) . '" href="' . esc_url( get_permalink( $post[ 'id' ] ) ) . '">
+					<strong>
+						' . esc_html( $post[ 'title' ] ) . ' three four five six
+					</strong>
+				</a>';
+
+	}
 
 }
 
-$content .= '
-			</table>
-		';
+$content .= '';
 
 $data = array();
-$data[ 'title' ]   = get_bloginfo( 'title' );
+
+$data[ 'title' ]   = '';
 $data[ 'content' ] = $content;
 
 // AJAX page

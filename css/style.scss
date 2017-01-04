@@ -77,11 +77,17 @@ body,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,a,img,dl,dt,dd,ol,ul,li,fieldset,form
 }
 
 body {
+
+	background: #f8f8f8;
+/*
+	background-image: url(https://images.unsplash.com/photo-1468817814611-b7edf94b5d60?dpr=1&auto=format&fit=crop&w=1500&h=2250&q=80&cs=tinysrgb&crop=);
+	background-size: 100%;
+	background-position: 630px -660px;
+*/
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 	font-size: 1rem;
 	color: #000;
-	background: #f8f8f8;
 }
 
 /* =Accessibility settings
@@ -118,7 +124,8 @@ a:hover {
 
 .wrapper {
 	clear: both;
-	margin: 0 auto;
+	overflow:auto;
+	margin: 7rem auto 9rem auto;
 	width: 86%;
 	padding: 0 4%;
 	word-wrap: break-word;
@@ -267,6 +274,7 @@ li.legal-notice a:before {
 	font-family: 'Open Sans Extra Bold', sans-serif;
 	font-weight: 100;
 	margin: 0.8rem 0 0 0.2rem;
+	padding: 0;
 	font-size: 2rem;
 	color: #333;
 
@@ -280,6 +288,7 @@ li.legal-notice a:before {
 header {
 
 	position: fixed;
+	z-index: 2;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -689,13 +698,58 @@ footer:hover #time-stamp span {
 	visibility: visible;
 }
 
+/* =Index
+-------------------------------------------------------------- */
+
+.box {
+
+	float: left;
+	width: 22%;
+	margin: 1.5%;
+	background-color: #fff;
+	background-size: cover !important;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+
+	background-image: url(https://images.unsplash.com/reserve/165aTVpzTXGMXu1azUdy_IMG_8468.JPG?dpr=1&auto=format&fit=crop&w=1500&h=996&q=80&cs=tinysrgb&crop=);
+
+	&:hover {
+		opacity: 0.8;
+		text-decoration: none;
+	}
+
+	strong {
+		margin-top: 75%;
+		display: block;
+		background: #fff;
+		padding: 5% 7%;
+		color: #000;
+		font-weight: normal;
+		font-size: 1rem;
+	}
+
+	&.blow-job,
+	&.anal {
+		background-image: url(https://images.unsplash.com/photo-1450776598040-e0dbb5665213?dpr=1&auto=format&fit=crop&w=1500&h=930&q=80&cs=tinysrgb&crop=);
+	}
+
+	&.intercourse,
+	&.heterosexual {
+		background-image: url(https://images.unsplash.com/photo-1471336199076-1bea7bdb30ba?dpr=1&auto=format&fit=crop&w=1500&h=1187&q=80&cs=tinysrgb&crop=);
+	}
+
+	&.english,
+	&.german {
+		background-image: url(https://images.unsplash.com/photo-1416615267350-a82c5a347dbf?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=);
+	}
+
+}
 
 /* =Contents
 -------------------------------------------------------------- */
 
 article {
 	max-width: 980px;
-	margin: 8rem auto 12rem auto;
+	margin: 10rem auto 12rem auto;
 }
 
 #canvas {
@@ -752,7 +806,8 @@ h6 a {
 
 h1 {
 	font-size: 3rem;
-	margin: 1rem 0 0.3rem;
+	margin: 0;
+	padding: 0;
 }
 
 h2 {
@@ -920,95 +975,23 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 
-	margin: 5rem 0;
+	margin: 0;
 	width: 100%;
 }
 
 tr {
-
-	margin: 0 0 1rem 0;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: normal;
 	line-height: 1.3rem;
-	text-align: center;
 
-	&:nth-child(even) {
-		background: #e9e9e9;
-	}
-
-	&:hover {
-
-		background: $red;
-		cursor: pointer;
-
-		td a,
-		td a:visited,
-		td a:hover,
-		td {
-			color: #fff;
-		}		
-
-	}
-
-	&:nth-child(1) {
-		cursor: default;
-	}
-
-	&:hover:nth-child(1) {
-		background: none;
-	}
 }
 
 caption,
 th,
 td {
-
 	padding: 2rem 5%;
 	font-weight: normal;
 	font-size: 1rem;
-
-	&:nth-child(1) {
-		text-align: left;
-	}
-
-	.thumbs-up:before,
-	.thumbs-down:before {
-		font-family: Icons;
-		visibility: visible;
-	}
-
-	.thumbs-up:before {
-		content: "\e902";
-	}
-
-	.thumbs-down:before {
-		content: "\e900";
-	}
-
-	&:nth-child(4) {
-		white-space: nowrap
-	}
-
-	a {
-		color: #000;
-
-		strong {
-			font-size: 1.3rem;
-			margin-bottom: 1rem;
-			display: block;
-		}
-
-		&:visited {
-			color: #000;
-		}
-
-		&:hover {
-			color: #000;
-			text-decoration: none
-		}
-
-	}
-
 }
 
 caption {
@@ -1158,6 +1141,7 @@ footer {
 			margin-right: 0;
 
 			ul {
+				margin-left: 5%;
 				width: 320px;
 				white-space: nowrap;
 				overflow-y: hidden;
@@ -1189,9 +1173,7 @@ footer {
 		overflow-y: scroll;
 		white-space: nowrap;
 		-webkit-overflow-scrolling: touch;
-		/*
-		height: 360px !important;
-		*/
+		max-width: 90%;
 	}
 
 	/* Audio player */
@@ -1214,6 +1196,11 @@ footer {
 
 	#thumbs-down {
 		right: -10%;
+	}
+
+	/* Content */
+	h1 {
+		font-size: 2rem;
 	}
 
 }

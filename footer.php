@@ -9,7 +9,6 @@
  */
 ?>
 
-	</article>
 </div>
 
 <footer id="footer">

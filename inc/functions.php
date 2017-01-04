@@ -53,6 +53,25 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 				$content = apply_filters( 'the_content', get_the_content() );
 			}
 
+
+			if ( isset( $audio_file_meta[ 'length' ] ) ) {
+				$length = $audio_file_meta[ 'length' ];
+			} else {
+				$length = 0;
+			}
+
+			if ( isset( $audio_file_meta[ 'sample_rate' ] ) ) {
+				$sample_rate = $audio_file_meta[ 'sample_rate' ];
+			} else {
+				$sample_rate = 0;
+			}
+
+			if ( isset( $audio_file_meta[ 'channels' ] ) ) {
+				$channels = $audio_file_meta[ 'channels' ];
+			} else {
+				$channels = 0;
+			}
+
 			$audio_posts[] = array(
 				'id'             => get_the_ID(),
 				'slug'           => $slug,
@@ -65,9 +84,9 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 				'genre-terms'    => $posts_terms,
 
 				// May not be needed, just dumping here in case they're useful later
-				'length'         => (string) absint( $audio_file_meta[ 'length' ] ),
-				'sample_rate'    => (string) absint( $audio_file_meta[ 'sample_rate' ] ),
-				'audio_channels' => (string) absint( $audio_file_meta[ 'channels' ] ),
+				'length'         => (string) absint( $length ),
+				'sample_rate'    => (string) absint( $sample_rate ),
+				'audio_channels' => (string) absint( $channels ),
 			);
 
 		}
@@ -98,12 +117,14 @@ function arousingaudio_get_post( $id ) {
 			$the_query->the_post();
 
 			$data[ 'slug' ]        = sanitize_title( get_post_field( 'post_name' ) );
-			$data[ 'title' ]       = 'Title ' . md5( get_the_ID() );//esc_html( get_the_title() );
-			$data[ 'content' ]     = 'Content ' . md5( get_the_ID() );//apply_filters( 'the_content', get_the_content() );
+			$data[ 'title' ]       = esc_html( get_the_title() );
+			$data[ 'content' ]     = apply_filters( 'the_content', get_the_content() );
 
-$data['title'] =  substr( 'Title ' . md5( get_the_ID() ) ,0,10 );
-$bla = substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 );
-$data['content'] = 'Content ' . $bla .$bla.$bla .$bla;
+if ( defined( 'TEST' ) && 'audio' == get_post_type( get_the_ID() ) ) {
+	$data['title'] =  substr( 'Title ' . md5( get_the_ID() ) ,0,10 );
+	$bla = substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 );
+	$data['content'] = 'Content ' . $bla .$bla.$bla .$bla;
+}
 
 			$data[ 'thumbs_up' ]   = arousingaudio_get_ratings( 'up', 'both', get_the_ID() );
 			$data[ 'thumbs_down' ] = arousingaudio_get_ratings( 'down', 'both', get_the_ID() );
