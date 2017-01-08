@@ -125,6 +125,7 @@ if ( defined( 'TEST' ) && 'audio' == get_post_type( get_the_ID() ) ) {
 	$bla = substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 ) . ' ' . substr( 'Title ' . md5( get_the_ID() ) ,0,8 );
 	$data['content'] = 'Content ' . $bla .$bla.$bla .$bla;
 }
+			$data['content'] = '<div class="single-content">' . $data['content'] . '</div>';
 
 			$data[ 'thumbs_up' ]   = arousingaudio_get_ratings( 'up', 'both', get_the_ID() );
 			$data[ 'thumbs_down' ] = arousingaudio_get_ratings( 'down', 'both', get_the_ID() );

@@ -744,17 +744,65 @@ footer:hover #time-stamp span {
 
 }
 
+/* =Single posts/pages
+-------------------------------------------------------------- */
+
+body.single-audio {
+
+	#content-wrapper {
+		background: $red;
+	}
+
+	#title,
+	#content {
+		color: #fff;
+	}
+
+}
+
+.single-content {
+	padding: 5% 0;
+}
+
+.wrapper {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#content-wrapper {
+	overflow: auto;
+	width: 100%;
+}
+
+#content-wrapper-inner {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 960px;
+}
+
+#content-wrapper-inner img {
+	float: right;
+	width: 40%;
+	height: auto;
+}
+
+#title {
+	margin-top: 5rem;
+}
+
+#canvas {
+	width: 100%;
+	height: 20rem;
+	margin: 0 auto 2rem auto;
+}
+
 /* =Contents
 -------------------------------------------------------------- */
 
 article {
 	max-width: 980px;
 	margin: 10rem auto 12rem auto;
-}
-
-#canvas {
-	width: 100%;
-	height: 20rem;
 }
 
 #tags {
@@ -807,7 +855,7 @@ h6 a {
 h1 {
 	font-size: 3rem;
 	margin: 0;
-	padding: 0;
+	padding: 5% 0 0 0;
 }
 
 h2 {
@@ -1024,7 +1072,8 @@ td {
 }
 
 #comments {
-	margin-top: 4rem;
+	margin: 4rem auto 12rem auto;
+	max-width: 980px;
 }
 
 #comments li,
@@ -1158,14 +1207,15 @@ footer {
 
 	}
 
-	th,
-	td {
+	.wrapper {
+		width: 100%;
+		margin: 8rem 0 13rem 0;
+		padding: 0 3%;
+	}
 
-		&:nth-child(2),
-		&:nth-child(3) {
-			display: none;
-		}
-
+	.box {
+		width: 41%;
+		margin: 3%;
 	}
 
 	#hamburger-menu {

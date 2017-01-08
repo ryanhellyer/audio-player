@@ -108,11 +108,12 @@
 						var response = JSON.parse( xmlhttp.responseText );
 
 						// Replace page content
-						if ( undefined != response[ 'title' ] ) {
+						if ( undefined != response[ 'title' ] && undefined != response[ 'slug' ] ) {
 							title.innerHTML    = response[ 'title' ];
 							document.title     = response[ 'title' ];
 						} else {
-							title.innerHTML = "";
+							title.innerHTML    = page_title;
+							document.title     = page_title;
 						}
 
 						if ( undefined != response[ 'content' ] ) {
@@ -127,10 +128,13 @@
 							comments.innerHTML = "";
 						}
 
+						var bodyTag = document.getElementsByTagName( "BODY" );
 						if ( "audio" == response.post_type ) {
 							canvas.style.display = "block";
+							bodyTag[0].className = "single-audio";
 						} else {
 							canvas.style.display = "none";
+							bodyTag[0].className = "";
 						}
 
 						// Load new audio file into player
