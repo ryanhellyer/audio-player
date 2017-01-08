@@ -9,14 +9,7 @@
  * @package Arousing Audio
  * @since Arousing Audio 1.0
  */
-class ArousingAudio_Setup {
-
-	/**
-	 * Theme version number.
-	 * 
-	 * @var string
-	 */
-	const VERSION_NUMBER = '1.0';
+class ArousingAudio_Setup extends ArousingAudio_Core {
 
 	/**
 	 * The default header text.
@@ -31,13 +24,6 @@ class ArousingAudio_Setup {
 	 * @var string
 	 */
 	const HEADER_TEXT_OPTION = 'header-text';
-
-	/**
-	 * Theme name.
-	 * 
-	 * @var string
-	 */
-	const THEME_NAME = 'arousingaudio';
 
 	/**
 	 * Constructor.

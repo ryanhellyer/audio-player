@@ -1,5 +1,6 @@
-(function () {
 
+(function () {
+var boobs = 'no';
 	var layout_design;
 
 	/**
@@ -34,8 +35,8 @@
 			durationTime.innerHTML = Math.floor( audioPlayer.duration * 10 ) / 10;
 
 			// Set audio player volume
-			var volume = get_local_storage( 'audio_volume' );
-			changeVolume( volume );
+			var volume = get_local_storage( 'the_audio_volume' );
+			changeVolume(   ( volume * 100 )    );
 
 			// Only show equalizer on audio posts (but need to keep in place, to avoid it glitching on switching pages)
 			if ( "audio" == post_type ) {
@@ -75,6 +76,7 @@
 			// Set layout
 			arousingaudio_resize();
 
+boobs = 'yes';
 		}
 	);
 
@@ -144,13 +146,7 @@
 				hamburgerMenu.style.height = height + "px";
 			}
 
-			// Process button clicks
-			if ( "mute" == e.target.id ) {
-				// Mute button
-
-				changeVolume( 0 );
-
-			} else if ( "play" == e.target.id ) {
+			if ( "play" == e.target.id ) {
 				// Play button
 
 				if ( "paused icon-button" == e.target.className ) {
@@ -392,15 +388,13 @@
 
 				}
 
-
-
-
-
 			}
 
-			// Save volume to local database
-			if ( volumeValue.innerHTML != get_local_storage( 'audio_volume' ) ) {
-				set_local_storage( 'audio_volume', volumeValue.innerHTML );
+			// Save volume to local database (only do if window has finished loading)
+			if ( document.readyState === 'complete' ) {
+				if ( ( audioPlayer.volume ) != get_local_storage( 'the_audio_volume' ) ) {
+					set_local_storage( 'the_audio_volume', audioPlayer.volume );
+				}
 			}
 
 		},

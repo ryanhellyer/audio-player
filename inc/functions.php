@@ -38,8 +38,8 @@ function arousingaudio_get_posts( $current_post_id = null ) {
 			$posts_terms = array();
 			foreach ( $terms as $key => $term ) {
 				$posts_terms[] = array(
-					'name' => esc_html( $term->name ),
-					'slug' => esc_html( $term->slug ),
+					'name'  => esc_html( $term->name ),
+					'slug'  => esc_html( $term->slug ),
 				);
 			}
 

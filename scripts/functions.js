@@ -2,10 +2,10 @@
 /**
  * Change the audio volume.
  *
- * @param  int  volume  The volume level to change to (from 0 and 1)
+ * @param  int  volume  The volume level to change to (from 0 and 100)
  */
 function changeVolume( volume ) {
-
+console.log( 'volume change: ' + volume );
 	// Set audio volume and displayed value
 	volumeValue.innerHTML = volume;
 
@@ -24,6 +24,7 @@ function changeVolume( volume ) {
 	var setting = ( ( volume / 100 ) * width ) - span.clientWidth;
 
 	span.style.left = setting + "px";
+
 }
 
 /**
@@ -172,11 +173,25 @@ function arousingaudio_resize() {
 
 	width = window.innerWidth || document.body.clientWidth;
 
-	// Setting width on header menu to allow horizontal scrolling on touch devices
+	// Mobile device specific stuff
 	if ( 760 > width ) {
+
+		// Setting width on header menu to allow horizontal scrolling on touch devices
 		var uls = headerNav.getElementsByTagName( "UL" );
 		ul = uls[0];
 		ul.style.width = width + "px";
+
+	}
+
+	// If volume displayed, then reset it's volume
+	if ( document.readyState === 'complete' ) {
+
+		var volumeDisplay = volumeWrapper.currentStyle ? volumeWrapper.currentStyle.display : getComputedStyle(volumeWrapper, null).display;
+		if ( "none" === volumeDisplay ) {
+			changeVolume( 100 ); // Set volume to 100% when on mobile
+		} else {
+			changeVolume( audioPlayer.volume * 100 );
+		}
 	}
 
 	// Forcing main content below the header

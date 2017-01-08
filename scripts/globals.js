@@ -6,6 +6,7 @@ var audioFileDir     = window.location.origin + "/audio/";
 var audioFile;
 var mainHeader      = document.getElementById( "header" );
 var mainFooter      = document.getElementById( "footer" );
+var volumeWrapper   = document.getElementById( "volume-wrapper" );
 
 // Audio player
 var audioPlayer      = document.getElementById( "audio-player" );

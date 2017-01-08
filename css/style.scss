@@ -517,6 +517,7 @@ td.icon-button span {
 /* Volume controls */
 
 #volume-wrapper {
+	display: block;
 	z-index: 3;
 	float: right;
 	width: 25%;
@@ -706,15 +707,20 @@ footer:hover #time-stamp span {
 	float: left;
 	width: 22%;
 	margin: 1.5%;
-	background-color: #fff;
-	background-size: cover !important;
 	box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-
-	background-image: url(https://images.unsplash.com/reserve/165aTVpzTXGMXu1azUdy_IMG_8468.JPG?dpr=1&auto=format&fit=crop&w=1500&h=996&q=80&cs=tinysrgb&crop=);
 
 	&:hover {
 		opacity: 0.8;
 		text-decoration: none;
+	}
+
+	span {
+		display: block;
+		width: 100%;
+		border:1px solid #ddd;
+		background-color: #fff;
+		background-image: url(../images/genre1.jpg); /* Default image */
+		background-size: cover !important;
 	}
 
 	strong {
@@ -727,24 +733,10 @@ footer:hover #time-stamp span {
 		font-size: 1rem;
 	}
 
-	&.blow-job,
-	&.anal {
-		background-image: url(https://images.unsplash.com/photo-1450776598040-e0dbb5665213?dpr=1&auto=format&fit=crop&w=1500&h=930&q=80&cs=tinysrgb&crop=);
-	}
-
-	&.intercourse,
-	&.heterosexual {
-		background-image: url(https://images.unsplash.com/photo-1471336199076-1bea7bdb30ba?dpr=1&auto=format&fit=crop&w=1500&h=1187&q=80&cs=tinysrgb&crop=);
-	}
-
-	&.english,
-	&.german {
-		background-image: url(https://images.unsplash.com/photo-1416615267350-a82c5a347dbf?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=);
-	}
-
 }
 
-body.home {
+body.home,
+body.archive {
 	
 	#content-wrapper-inner {
 		max-width: 90%;
@@ -1230,7 +1222,8 @@ footer {
 		padding: 0 8%;
 	}
 
-	body.home #content-wrapper-inner {
+	body.home #content-wrapper-inner,
+	body.archive #content-wrapper-inner {
 		width: 96%;
 		max-width: 96%;
 		margin-right: 2%;

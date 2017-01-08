@@ -37,14 +37,18 @@ foreach ( arousingaudio_get_posts() as $key => $post ) {
 
 		$term_slug = '';
 		if ( isset( $post[ 'genre-terms' ][ 0 ][ 'slug' ] ) ) {
-			$term_slug = ' ' . $post[ 'genre-terms' ][ 0 ][ 'slug' ];
+			$term_slug = ' genre-' . $post[ 'genre-terms' ][ 0 ][ 'slug' ];
 		}
 
+		$url = get_permalink( $post[ 'id' ] );
+
 		$content .= '
-				<a class="' . esc_attr( 'box' . $term_slug ) . '" href="' . esc_url( get_permalink( $post[ 'id' ] ) ) . '">
+				<a class="' . esc_attr( 'box' . $term_slug ) . '" href="' . esc_url( $url ) . '">
+					<span>
 					<strong>
 						' . esc_html( $post[ 'title' ] ) . ' three four five six
 					</strong>
+					</span>
 				</a>';
 
 	}

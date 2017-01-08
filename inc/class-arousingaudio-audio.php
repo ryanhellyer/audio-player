@@ -9,7 +9,7 @@
  * @package Arousing Audio
  * @since Arousing Audio 1.0
  */
-class ArousingAudio_Audio {
+class ArousingAudio_Audio extends ArousingAudio_Core {
 
 	/**
 	 * Constructor.
@@ -19,6 +19,7 @@ class ArousingAudio_Audio {
 		add_action( 'init',               array( $this, 'register_post_types' ) );
 		add_action( 'init',               array( $this, 'register_taxonomies' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'variables' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'taxonomy_css' ), 20 );
 	}
 
 	/**
@@ -101,6 +102,36 @@ class ArousingAudio_Audio {
 		);
 
 		register_taxonomy( 'genre', array( 'audio' ), $args );
+
+	}
+
+	public function taxonomy_css() {
+
+		// Get background image
+		if ( isset( $post[ 'genre-terms' ][ 0 ][ 'image' ] ) ) {
+			$image = $post[ 'genre-terms' ][ 0 ][ 'image' ];
+		} else {
+			$image = 'genre1.jpg';
+		}
+		$dir = wp_upload_dir();
+		$dir_url = $dir[ 'url' ];
+		$image_url = $dir_url . '/' . $image;
+
+		// Loop through terms and add CSS to each
+		$terms = get_terms( array(
+			'taxonomy'   => 'genre',
+			'hide_empty' => true,
+		) );
+		$css = '';
+		foreach ( $terms as $key => $term ) {
+			$attachment_id = get_term_meta( $term->term_id, 'taxonomy-header-image', true );
+			$url = wp_get_attachment_image_src( $attachment_id )[0];
+
+			$css .= '.genre-' . esc_attr( $term->slug ) . ' span {background:url(' . esc_url( $url ) . ");}\n";
+
+		}
+
+        wp_add_inline_style( self::THEME_NAME, $css );
 
 	}
 
