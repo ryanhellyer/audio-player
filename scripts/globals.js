@@ -4,6 +4,8 @@
  */
 var audioFileDir     = window.location.origin + "/audio/";
 var audioFile;
+var mainHeader      = document.getElementById( "header" );
+var mainFooter      = document.getElementById( "footer" );
 
 // Audio player
 var audioPlayer      = document.getElementById( "audio-player" );

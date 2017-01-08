@@ -744,6 +744,16 @@ footer:hover #time-stamp span {
 
 }
 
+body.home {
+	
+	#content-wrapper-inner {
+		max-width: 90%;
+		margin-top: 2rem;
+	}
+
+}
+
+
 /* =Single posts/pages
 -------------------------------------------------------------- */
 
@@ -760,10 +770,6 @@ body.single-audio {
 
 }
 
-.single-content {
-	padding: 5% 0;
-}
-
 .wrapper {
 	width: 100%;
 	margin: 0;
@@ -773,10 +779,12 @@ body.single-audio {
 #content-wrapper {
 	overflow: auto;
 	width: 100%;
+	margin-top: 0.2rem;
+	margin-bottom: 4rem;
 }
 
 #content-wrapper-inner {
-	margin: 0 auto;
+	margin: 4rem auto 0 auto;
 	width: 100%;
 	max-width: 960px;
 }
@@ -785,10 +793,6 @@ body.single-audio {
 	float: right;
 	width: 40%;
 	height: auto;
-}
-
-#title {
-	margin-top: 5rem;
 }
 
 #canvas {
@@ -855,7 +859,7 @@ h6 a {
 h1 {
 	font-size: 3rem;
 	margin: 0;
-	padding: 5% 0 0 0;
+	padding: 0;
 }
 
 h2 {
@@ -1072,8 +1076,17 @@ td {
 }
 
 #comments {
-	margin: 4rem auto 12rem auto;
+	display: none;
+	margin: 4rem auto 4rem auto;
 	max-width: 980px;
+}
+
+body.single-audio {
+
+	#comments {
+		display: block;
+	}
+
 }
 
 #comments li,
@@ -1209,12 +1222,24 @@ footer {
 
 	.wrapper {
 		width: 100%;
-		margin: 8rem 0 13rem 0;
-		padding: 0 3%;
+	}
+
+	#comments,
+	#content-wrapper-inner {
+		width: 84%;
+		padding: 0 8%;
+	}
+
+	body.home #content-wrapper-inner {
+		width: 96%;
+		max-width: 96%;
+		margin-right: 2%;
+		margin-left: 2%;
+		padding: 0;
 	}
 
 	.box {
-		width: 41%;
+		width: 44%;
 		margin: 3%;
 	}
 

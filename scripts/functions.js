@@ -164,3 +164,23 @@ function get_local_storage( item ) {
 function set_local_storage( item, value ) {
 	return localStorage.setItem( item, value );
 }
+
+/**
+ * Resize.
+ */
+function arousingaudio_resize() {
+
+	width = window.innerWidth || document.body.clientWidth;
+
+	// Setting width on header menu to allow horizontal scrolling on touch devices
+	if ( 760 > width ) {
+		var uls = headerNav.getElementsByTagName( "UL" );
+		ul = uls[0];
+		ul.style.width = width + "px";
+	}
+
+	// Forcing main content below the header
+	main.style.marginTop    = mainHeader.offsetHeight + "px";
+	main.style.marginBottom = mainFooter.offsetHeight + "px";
+
+}

@@ -110,9 +110,11 @@
 						// Replace page content
 						if ( undefined != response[ 'title' ] && undefined != response[ 'slug' ] ) {
 							title.innerHTML    = response[ 'title' ];
+							title.style.display = "block";
 							document.title     = response[ 'title' ];
 						} else {
-							title.innerHTML    = page_title;
+							title.innerHTML    = "";
+							title.style.display = "none";
 							document.title     = page_title;
 						}
 
@@ -122,19 +124,24 @@
 							content.innerHTML = "";
 						}
 
+						// Insert comments as HTML string
 						if ( undefined != response[ 'comments' ] ) {
 							comments.innerHTML = response[ 'comments' ];
 						} else {
 							comments.innerHTML = "";
 						}
 
+						// Body tag class
 						var bodyTag = document.getElementsByTagName( "BODY" );
 						if ( "audio" == response.post_type ) {
 							canvas.style.display = "block";
 							bodyTag[0].className = "single-audio";
+						} else if ( "page" == response.post_type ) {
+							canvas.style.display = "none";
+							bodyTag[0].className = "page";
 						} else {
 							canvas.style.display = "none";
-							bodyTag[0].className = "";
+							bodyTag[0].className = "home";
 						}
 
 						// Load new audio file into player

@@ -40,7 +40,7 @@
 
 </div>
 
-<header>
+<header id="header">
 
 	<div id="hamburger" class="hamburger"></div>
 
